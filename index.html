@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LifeWear Collection | Your Brand</title>
+    <title>LifeWear Collection | Domine Apparel</title>
     <style>
         * {
             margin: 0;
@@ -39,6 +39,9 @@
             font-weight: bold;
             color: #000;
             text-decoration: none;
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+            letter-spacing: 1px;
         }
         
         nav ul {
@@ -59,22 +62,37 @@
         .hero {
             position: relative;
             height: 70vh;
-            background-color: #f5f5f5;
+            background: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
             display: flex;
             align-items: center;
             justify-content: center;
             text-align: center;
             margin-bottom: 50px;
+            color: white;
+        }
+        
+        .hero::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            right: 0;
+            bottom: 0;
+            background: rgba(0,0,0,0.3);
         }
         
         .hero-content {
             max-width: 800px;
             padding: 20px;
+            position: relative;
+            z-index: 1;
         }
         
         .hero h1 {
             font-size: 48px;
             margin-bottom: 20px;
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
         }
         
         .hero p {
@@ -97,9 +115,26 @@
             background-color: #333;
         }
         
+        .section-title {
+            text-align: center;
+            margin: 40px 0;
+            font-size: 32px;
+            font-family: 'Times New Roman', serif;
+            font-style: italic;
+        }
+        
+        .category-title {
+            text-align: center;
+            margin: 60px 0 30px;
+            font-size: 26px;
+            color: #555;
+            text-transform: uppercase;
+            letter-spacing: 2px;
+        }
+        
         .collection-grid {
             display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(300px, 1fr));
+            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
             gap: 30px;
             padding: 0 5%;
             max-width: 1400px;
@@ -109,30 +144,39 @@
         .product-card {
             position: relative;
             overflow: hidden;
+            transition: all 0.3s ease;
+        }
+        
+        .product-card:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
         }
         
         .product-image {
             width: 100%;
-            height: 400px;
+            height: 350px;
             object-fit: cover;
             transition: transform 0.3s ease;
         }
         
         .product-card:hover .product-image {
-            transform: scale(1.03);
+            transform: scale(1.05);
         }
         
         .product-info {
-            padding: 15px 0;
+            padding: 15px 10px;
+            background: white;
         }
         
         .product-title {
             font-size: 16px;
             margin-bottom: 5px;
+            font-weight: 500;
         }
         
         .product-price {
             font-weight: bold;
+            color: #000;
         }
         
         footer {
@@ -145,6 +189,7 @@
             display: flex;
             justify-content: center;
             margin-bottom: 30px;
+            flex-wrap: wrap;
         }
         
         .footer-links a {
@@ -157,12 +202,37 @@
             color: #777;
             font-size: 14px;
         }
+
+        @media (max-width: 768px) {
+            .nav-container {
+                flex-direction: column;
+                padding: 15px;
+            }
+            
+            nav ul {
+                margin-top: 15px;
+                flex-wrap: wrap;
+                justify-content: center;
+            }
+            
+            nav ul li {
+                margin: 0 10px;
+            }
+            
+            .hero h1 {
+                font-size: 36px;
+            }
+            
+            .collection-grid {
+                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            }
+        }
     </style>
 </head>
 <body>
     <header>
         <div class="nav-container">
-            <a href="/" class="logo">YOURBRAND</a>
+            <a href="/" class="logo">DOMINE</a>
             <nav>
                 <ul>
                     <li><a href="/women">Women</a></li>
@@ -179,57 +249,266 @@
         <section class="hero">
             <div class="hero-content">
                 <h1>LifeWear Collection</h1>
-                <p>Simple, high-quality everyday clothing with a universal sense of beauty and practicality.</p>
+                <p>Elevated essentials with timeless sophistication and uncompromising quality.</p>
                 <a href="#collection" class="btn">Shop Now</a>
             </div>
         </section>
         
-        <section id="collection" class="collection-grid">
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x400" alt="Premium Cotton T-Shirt" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Premium Cotton T-Shirt</h3>
-                    <p class="product-price">₹990</p>
+        <h2 class="section-title">Featured Products</h2>
+        
+        <section id="collection">
+            <h3 class="category-title">T-Shirts</h3>
+            <div class="collection-grid">
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/9558699/pexels-photo-9558699.jpeg" alt="Premium Cotton T-Shirt" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Premium Cotton T-Shirt</h3>
+                        <p class="product-price">₹990</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="AIRism Cotton Crew Neck" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">AIRism Cotton Crew Neck</h3>
+                        <p class="product-price">₹1,290</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="U Crew Neck Short Sleeve" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">U Crew Neck Short Sleeve</h3>
+                        <p class="product-price">₹890</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dry-Ex Graphic T-Shirt" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Dry-Ex Graphic T-Shirt</h3>
+                        <p class="product-price">₹1,190</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/8532616/pexels-photo-8532616.jpeg" alt="Supima Cotton V-Neck" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Supima Cotton V-Neck</h3>
+                        <p class="product-price">₹1,490</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Heavyweight Pocket Tee" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Heavyweight Pocket Tee</h3>
+                        <p class="product-price">₹1,090</p>
+                    </div>
                 </div>
             </div>
             
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x400" alt="Easy Care Oxford Shirt" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Easy Care Oxford Shirt</h3>
-                    <p class="product-price">₹1,990</p>
+            <h3 class="category-title">Shirts</h3>
+            <div class="collection-grid">
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/769733/pexels-photo-769733.jpeg" alt="Easy Care Oxford Shirt" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Easy Care Oxford Shirt</h3>
+                        <p class="product-price">₹1,990</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Linen-Cotton Button Down" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Linen-Cotton Button Down</h3>
+                        <p class="product-price">₹2,490</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/6311392/pexels-photo-6311392.jpeg" alt="Flannel Check Shirt" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Flannel Check Shirt</h3>
+                        <p class="product-price">₹2,190</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dry-Ex Long Sleeve" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Dry-Ex Long Sleeve</h3>
+                        <p class="product-price">₹2,390</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/4927361/pexels-photo-4927361.jpeg" alt="Chambray Workshirt" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Chambray Workshirt</h3>
+                        <p class="product-price">₹2,290</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Premium Cotton Broadcloth" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Premium Cotton Broadcloth</h3>
+                        <p class="product-price">₹2,590</p>
+                    </div>
                 </div>
             </div>
             
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x400" alt="Ultra Light Down Jacket" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Ultra Light Down Jacket</h3>
-                    <p class="product-price">₹3,990</p>
+            <h3 class="category-title">Jackets</h3>
+            <div class="collection-grid">
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ultra Light Down Jacket" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Ultra Light Down Jacket</h3>
+                        <p class="product-price">₹3,990</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/1040173/pexels-photo-1040173.jpeg" alt="Blocktech Parka" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Blocktech Parka</h3>
+                        <p class="product-price">₹4,990</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Wool-Blend Chester Coat" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Wool-Blend Chester Coat</h3>
+                        <p class="product-price">₹5,990</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg" alt="Ultra Light Down Vest" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Ultra Light Down Vest</h3>
+                        <p class="product-price">₹3,490</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fleece Full-Zip Jacket" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Fleece Full-Zip Jacket</h3>
+                        <p class="product-price">₹2,990</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/981090/pexels-photo-981090.jpeg" alt="Hybrid Down Coat" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Hybrid Down Coat</h3>
+                        <p class="product-price">₹6,490</p>
+                    </div>
                 </div>
             </div>
             
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x400" alt="Stretch Comfort Jeans" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Stretch Comfort Jeans</h3>
-                    <p class="product-price">₹2,490</p>
+            <h3 class="category-title">Pants</h3>
+            <div class="collection-grid">
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg" alt="Stretch Comfort Jeans" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Stretch Comfort Jeans</h3>
+                        <p class="product-price">₹2,490</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="EZY Ankle Pants" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">EZY Ankle Pants</h3>
+                        <p class="product-price">₹1,990</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/52518/jeans-pants-blue-shop-52518.jpeg" alt="Slim Fit Selvedge Jeans" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Slim Fit Selvedge Jeans</h3>
+                        <p class="product-price">₹3,290</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1473966968600-fa801b869a1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ultra Stretch Jogger Pants" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Ultra Stretch Jogger Pants</h3>
+                        <p class="product-price">₹2,190</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/914668/pexels-photo-914668.jpeg" alt="Wide Fit Tapered Pants" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Wide Fit Tapered Pants</h3>
+                        <p class="product-price">₹2,390</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dry-Ex Easy Shorts" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Dry-Ex Easy Shorts</h3>
+                        <p class="product-price">₹1,590</p>
+                    </div>
                 </div>
             </div>
             
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x400" alt="AIRism Cotton Crew Neck T-Shirt" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">AIRism Cotton Crew Neck T-Shirt</h3>
-                    <p class="product-price">₹1,290</p>
+            <h3 class="category-title">Polo Shirts</h3>
+            <div class="collection-grid">
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/842811/pexels-photo-842811.jpeg" alt="Dry-Ex Polo Shirt" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Dry-Ex Polo Shirt</h3>
+                        <p class="product-price">₹1,490</p>
+                    </div>
                 </div>
-            </div>
-            
-            <div class="product-card">
-                <img src="https://via.placeholder.com/300x400" alt="Dry-Ex Polo Shirt" class="product-image">
-                <div class="product-info">
-                    <h3 class="product-title">Dry-Ex Polo Shirt</h3>
-                    <p class="product-price">₹1,490</p>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Supima Cotton Polo" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Supima Cotton Polo</h3>
+                        <p class="product-price">₹1,790</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/9558605/pexels-photo-9558605.jpeg" alt="AIRism UV Protection Polo" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">AIRism UV Protection Polo</h3>
+                        <p class="product-price">₹1,990</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1578932750355-5eb30ece487a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mesh Short Sleeve Polo" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Mesh Short Sleeve Polo</h3>
+                        <p class="product-price">₹1,690</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.pexels.com/photos/8532619/pexels-photo-8532619.jpeg" alt="Color Block Polo Shirt" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Color Block Polo Shirt</h3>
+                        <p class="product-price">₹1,890</p>
+                    </div>
+                </div>
+                
+                <div class="product-card">
+                    <img src="https://images.unsplash.com/photo-1620799140180-6b5ad4b1e355?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Premium Linen Polo" class="product-image">
+                    <div class="product-info">
+                        <h3 class="product-title">Premium Linen Polo</h3>
+                        <p class="product-price">₹2,290</p>
+                    </div>
                 </div>
             </div>
         </section>
@@ -241,8 +520,10 @@
             <a href="/stores">Stores</a>
             <a href="/sustainability">Sustainability</a>
             <a href="/help">Help</a>
+            <a href="/terms">Terms</a>
+            <a href="/privacy">Privacy</a>
         </div>
-        <p class="copyright">© 2023 YOURBRAND. All Rights Reserved.</p>
+        <p class="copyright">© 2023 DOMINE APPAREL. All Rights Reserved.</p>
     </footer>
 </body>
 </html>
