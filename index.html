@@ -3,527 +3,738 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>LifeWear Collection | Domine Apparel</title>
+    <title>Domine | Unique Fashion Inspired Clothing</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/animate.css/4.1.1/animate.min.css">
     <style>
+        /* Global Styles */
         * {
             margin: 0;
             padding: 0;
             box-sizing: border-box;
-            font-family: 'Helvetica Neue', Arial, sans-serif;
+            font-family: 'Arial', sans-serif;
         }
-        
+
         body {
+            background-color: #f9f9f9;
             color: #333;
-            line-height: 1.6;
+            overflow-x: hidden;
         }
-        
+
+        /* Header & Navigation */
         header {
             background-color: #fff;
-            box-shadow: 0 2px 10px rgba(0,0,0,0.1);
+            box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
             position: sticky;
             top: 0;
             z-index: 100;
+            animation: fadeInDown 0.8s;
         }
-        
-        .nav-container {
+
+        @keyframes fadeInDown {
+            from {
+                opacity: 0;
+                transform: translateY(-20px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        .navbar {
             display: flex;
             justify-content: space-between;
             align-items: center;
-            padding: 15px 5%;
-            max-width: 1400px;
+            padding: 1rem 5%;
+            max-width: 1200px;
             margin: 0 auto;
         }
-        
+
         .logo {
-            font-size: 24px;
-            font-weight: bold;
-            color: #000;
-            text-decoration: none;
-            font-family: 'Times New Roman', serif;
-            font-style: italic;
-            letter-spacing: 1px;
-        }
-        
-        nav ul {
-            display: flex;
-            list-style: none;
-        }
-        
-        nav ul li {
-            margin-left: 25px;
-        }
-        
-        nav ul li a {
-            text-decoration: none;
-            color: #000;
-            font-weight: 500;
-        }
-        
-        .hero {
-            position: relative;
-            height: 70vh;
-            background: url('https://images.unsplash.com/photo-1483985988355-763728e1935b?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80') center/cover;
             display: flex;
             align-items: center;
-            justify-content: center;
-            text-align: center;
-            margin-bottom: 50px;
-            color: white;
+            gap: 10px;
+            transition: transform 0.3s;
         }
-        
+
+        .logo:hover {
+            transform: scale(1.05);
+        }
+
+        .logo img {
+            height: 40px;
+            width: auto;
+        }
+
+        .logo-text {
+            font-size: 1.8rem;
+            font-weight: bold;
+            color: #ff6b6b;
+        }
+
+        .logo-text span {
+            color: #333;
+        }
+
+        .nav-links {
+            display: flex;
+            gap: 2rem;
+        }
+
+        .nav-links a {
+            text-decoration: none;
+            color: #333;
+            font-weight: 500;
+            transition: all 0.3s;
+            position: relative;
+        }
+
+        .nav-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ff6b6b;
+            transition: width 0.3s;
+        }
+
+        .nav-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .nav-links a:hover::after {
+            width: 100%;
+        }
+
+        .cart-icon {
+            font-size: 1.2rem;
+            cursor: pointer;
+            transition: transform 0.3s;
+        }
+
+        .cart-icon:hover {
+            transform: scale(1.2);
+            color: #ff6b6b;
+        }
+
+        /* Hero Section */
+        .hero {
+            background: url('https://images.unsplash.com/photo-1489987707025-afc232f7ea0f?ixlib=rb-4.0.3&auto=format&fit=crop&w=1350&q=80') no-repeat center center/cover;
+            height: 80vh;
+            display: flex;
+            align-items: center;
+            text-align: center;
+            color: #fff;
+            position: relative;
+            animation: fadeIn 1s;
+        }
+
         .hero::before {
             content: '';
             position: absolute;
             top: 0;
             left: 0;
-            right: 0;
-            bottom: 0;
-            background: rgba(0,0,0,0.3);
+            width: 100%;
+            height: 100%;
+            background: rgba(0, 0, 0, 0.5);
         }
-        
+
         .hero-content {
             max-width: 800px;
-            padding: 20px;
+            margin: 0 auto;
+            padding: 2rem;
             position: relative;
             z-index: 1;
         }
-        
+
         .hero h1 {
-            font-size: 48px;
-            margin-bottom: 20px;
-            font-family: 'Times New Roman', serif;
-            font-style: italic;
+            font-size: 3rem;
+            margin-bottom: 1rem;
+            animation: fadeInUp 1s 0.3s both;
         }
-        
+
         .hero p {
-            font-size: 18px;
-            margin-bottom: 30px;
+            font-size: 1.2rem;
+            margin-bottom: 2rem;
+            animation: fadeInUp 1s 0.5s both;
         }
-        
+
         .btn {
             display: inline-block;
-            padding: 12px 30px;
-            background-color: #000;
+            padding: 0.8rem 2rem;
+            background-color: #ff6b6b;
             color: #fff;
+            border: none;
+            border-radius: 5px;
+            font-weight: bold;
             text-decoration: none;
-            border-radius: 4px;
-            font-weight: 500;
-            transition: all 0.3s ease;
-        }
-        
-        .btn:hover {
-            background-color: #333;
-        }
-        
-        .section-title {
-            text-align: center;
-            margin: 40px 0;
-            font-size: 32px;
-            font-family: 'Times New Roman', serif;
-            font-style: italic;
-        }
-        
-        .category-title {
-            text-align: center;
-            margin: 60px 0 30px;
-            font-size: 26px;
-            color: #555;
-            text-transform: uppercase;
-            letter-spacing: 2px;
-        }
-        
-        .collection-grid {
-            display: grid;
-            grid-template-columns: repeat(auto-fill, minmax(280px, 1fr));
-            gap: 30px;
-            padding: 0 5%;
-            max-width: 1400px;
-            margin: 0 auto 50px;
-        }
-        
-        .product-card {
+            transition: all 0.3s;
+            animation: fadeInUp 1s 0.7s both;
             position: relative;
             overflow: hidden;
-            transition: all 0.3s ease;
         }
-        
-        .product-card:hover {
-            transform: translateY(-5px);
-            box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+
+        .btn:hover {
+            background-color: #ff5252;
+            transform: translateY(-3px);
+            box-shadow: 0 10px 20px rgba(0, 0, 0, 0.2);
         }
-        
-        .product-image {
+
+        .btn:active {
+            transform: translateY(-1px);
+            box-shadow: 0 5px 10px rgba(0, 0, 0, 0.2);
+        }
+
+        .btn::after {
+            content: "";
+            display: inline-block;
+            height: 100%;
             width: 100%;
-            height: 350px;
-            object-fit: cover;
-            transition: transform 0.3s ease;
+            border-radius: 5px;
+            position: absolute;
+            top: 0;
+            left: 0;
+            z-index: -1;
+            transition: all 0.4s;
+            background-color: #ff6b6b;
         }
-        
-        .product-card:hover .product-image {
-            transform: scale(1.05);
+
+        .btn:hover::after {
+            transform: scaleX(1.4) scaleY(1.6);
+            opacity: 0;
         }
-        
-        .product-info {
-            padding: 15px 10px;
-            background: white;
+
+        /* Featured Products */
+        .featured {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            opacity: 0;
+            transform: translateY(20px);
+            transition: all 0.8s;
         }
-        
-        .product-title {
-            font-size: 16px;
-            margin-bottom: 5px;
-            font-weight: 500;
+
+        .featured.animate {
+            opacity: 1;
+            transform: translateY(0);
         }
-        
-        .product-price {
-            font-weight: bold;
-            color: #000;
-        }
-        
-        footer {
-            background-color: #f5f5f5;
-            padding: 50px 5%;
+
+        .section-title {
             text-align: center;
+            margin-bottom: 3rem;
+            font-size: 2rem;
+            color: #333;
+            position: relative;
+            display: inline-block;
+            left: 50%;
+            transform: translateX(-50%);
         }
-        
+
+        .section-title::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            bottom: -10px;
+            left: 25%;
+            background-color: #ff6b6b;
+            transition: width 0.3s;
+        }
+
+        .section-title:hover::after {
+            width: 80%;
+        }
+
+        .products {
+            display: grid;
+            grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            gap: 2rem;
+        }
+
+        .product-card {
+            background: #fff;
+            border-radius: 10px;
+            overflow: hidden;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .product-card.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .product-card:nth-child(1) { transition-delay: 0.1s; }
+        .product-card:nth-child(2) { transition-delay: 0.2s; }
+        .product-card:nth-child(3) { transition-delay: 0.3s; }
+        .product-card:nth-child(4) { transition-delay: 0.4s; }
+
+        .product-card:hover {
+            transform: translateY(-10px) scale(1.02);
+            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-img {
+            width: 100%;
+            height: 250px;
+            object-fit: cover;
+            transition: transform 0.5s;
+        }
+
+        .product-card:hover .product-img {
+            transform: scale(1.1);
+        }
+
+        .product-info {
+            padding: 1.5rem;
+        }
+
+        .product-title {
+            font-size: 1.2rem;
+            margin-bottom: 1rem;
+            transition: color 0.3s;
+        }
+
+        .product-card:hover .product-title {
+            color: #ff6b6b;
+        }
+
+        /* About & Contact Section */
+        .about-contact {
+            padding: 5rem 5%;
+            max-width: 1200px;
+            margin: 0 auto;
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 3rem;
+        }
+
+        .about, .contact {
+            background: #fff;
+            padding: 2rem;
+            border-radius: 10px;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+            transition: all 0.3s;
+            opacity: 0;
+            transform: translateY(20px);
+        }
+
+        .about.animate, .contact.animate {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .about { transition-delay: 0.1s; }
+        .contact { transition-delay: 0.2s; }
+
+        .about:hover, .contact:hover {
+            transform: translateY(-5px);
+            box-shadow: 0 10px 25px rgba(0, 0, 0, 0.15);
+        }
+
+        .about h2, .contact h2 {
+            margin-bottom: 1.5rem;
+            color: #ff6b6b;
+            position: relative;
+            display: inline-block;
+        }
+
+        .about h2::after, .contact h2::after {
+            content: '';
+            position: absolute;
+            width: 50%;
+            height: 3px;
+            bottom: -8px;
+            left: 0;
+            background-color: #ff6b6b;
+            transition: width 0.3s;
+        }
+
+        .about:hover h2::after, .contact:hover h2::after {
+            width: 100%;
+        }
+
+        .contact-info {
+            margin-top: 1.5rem;
+        }
+
+        .contact-info p {
+            margin-bottom: 1rem;
+            display: flex;
+            align-items: center;
+            transition: transform 0.3s;
+        }
+
+        .contact-info p:hover {
+            transform: translateX(5px);
+        }
+
+        .contact-info i {
+            margin-right: 1rem;
+            color: #ff6b6b;
+            transition: transform 0.3s;
+        }
+
+        .contact-info p:hover i {
+            transform: scale(1.2);
+        }
+
+        /* Promo Banner */
+        .promo-banner {
+            background: linear-gradient(135deg, #ff6b6b, #ff8e8e);
+            color: #fff;
+            text-align: center;
+            padding: 3rem 5%;
+            margin: 3rem 0;
+            position: relative;
+            overflow: hidden;
+            animation: pulse 2s infinite alternate;
+        }
+
+        @keyframes pulse {
+            from {
+                box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4);
+            }
+            to {
+                box-shadow: 0 0 0 15px rgba(255, 107, 107, 0);
+            }
+        }
+
+        .promo-banner h2 {
+            font-size: 2rem;
+            margin-bottom: 1rem;
+            position: relative;
+            z-index: 1;
+        }
+
+        .promo-banner p {
+            position: relative;
+            z-index: 1;
+        }
+
+        .promo-banner::before {
+            content: '';
+            position: absolute;
+            top: -50%;
+            left: -50%;
+            width: 200%;
+            height: 200%;
+            background: radial-gradient(circle, rgba(255,255,255,0.1) 0%, rgba(255,255,255,0) 70%);
+            animation: rotate 15s linear infinite;
+        }
+
+        @keyframes rotate {
+            from {
+                transform: rotate(0deg);
+            }
+            to {
+                transform: rotate(360deg);
+            }
+        }
+
+        /* Footer */
+        footer {
+            background: #333;
+            color: #fff;
+            padding: 3rem 5%;
+            text-align: center;
+            animation: fadeInUp 0.8s;
+        }
+
         .footer-links {
             display: flex;
             justify-content: center;
-            margin-bottom: 30px;
+            gap: 2rem;
+            margin-bottom: 2rem;
             flex-wrap: wrap;
         }
-        
+
         .footer-links a {
-            margin: 0 15px;
+            color: #fff;
             text-decoration: none;
-            color: #333;
-        }
-        
-        .copyright {
-            color: #777;
-            font-size: 14px;
+            transition: all 0.3s;
+            position: relative;
         }
 
+        .footer-links a::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #ff6b6b;
+            transition: width 0.3s;
+        }
+
+        .footer-links a:hover {
+            color: #ff6b6b;
+        }
+
+        .footer-links a:hover::after {
+            width: 100%;
+        }
+
+        .social-icons {
+            margin-bottom: 2rem;
+        }
+
+        .social-icons a {
+            color: #fff;
+            margin: 0 0.5rem;
+            font-size: 1.5rem;
+            transition: all 0.3s;
+            display: inline-block;
+        }
+
+        .social-icons a:hover {
+            color: #ff6b6b;
+            transform: translateY(-5px) scale(1.2);
+        }
+
+        .copyright {
+            font-size: 0.9rem;
+            opacity: 0.8;
+        }
+
+        /* Scroll to Top Button */
+        .scroll-top {
+            position: fixed;
+            bottom: 30px;
+            right: 30px;
+            width: 50px;
+            height: 50px;
+            background-color: #ff6b6b;
+            color: white;
+            border-radius: 50%;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            cursor: pointer;
+            opacity: 0;
+            visibility: hidden;
+            transition: all 0.3s;
+            z-index: 99;
+            box-shadow: 0 5px 15px rgba(0, 0, 0, 0.2);
+        }
+
+        .scroll-top.active {
+            opacity: 1;
+            visibility: visible;
+        }
+
+        .scroll-top:hover {
+            background-color: #ff5252;
+            transform: translateY(-5px);
+        }
+
+        /* Responsive Design */
         @media (max-width: 768px) {
-            .nav-container {
+            .navbar {
                 flex-direction: column;
-                padding: 15px;
+                gap: 1rem;
             }
-            
-            nav ul {
-                margin-top: 15px;
+
+            .nav-links {
+                gap: 1rem;
                 flex-wrap: wrap;
                 justify-content: center;
             }
-            
-            nav ul li {
-                margin: 0 10px;
-            }
-            
+
             .hero h1 {
-                font-size: 36px;
+                font-size: 2rem;
+            }
+
+            .products {
+                grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
+            }
+
+            .about-contact {
+                grid-template-columns: 1fr;
             }
             
-            .collection-grid {
-                grid-template-columns: repeat(auto-fill, minmax(250px, 1fr));
+            .about, .contact {
+                margin-bottom: 2rem;
             }
         }
     </style>
 </head>
 <body>
+    <!-- Scroll to Top Button -->
+    <div class="scroll-top">
+        <i class="fas fa-arrow-up"></i>
+    </div>
+
+    <!-- Header & Navigation -->
     <header>
-        <div class="nav-container">
-            <a href="/" class="logo">DOMINE</a>
-            <nav>
-                <ul>
-                    <li><a href="/women">Women</a></li>
-                    <li><a href="/men">Men</a></li>
-                    <li><a href="/kids">Kids</a></li>
-                    <li><a href="/life">LifeWear</a></li>
-                    <li><a href="/sale">Sale</a></li>
-                </ul>
-            </nav>
-        </div>
+        <nav class="navbar">
+            <div class="logo">
+                <img src="1.jpeg" alt="Domine Logo">
+                <div class="logo-text">Welcomes you </div>
+            </div>
+            <div class="nav-links">
+                <a href="#home">Home</a>
+                <a href="#shop">Shop</a>
+                <a href="#about">About</a>
+                <a href="#contact">Contact</a>
+                <a href="#"><i class="fas fa-shopping-cart cart-icon"></i></a>
+            </div>
+        </nav>
     </header>
-    
-    <main>
-        <section class="hero">
-            <div class="hero-content">
-                <h1>LifeWear Collection</h1>
-                <p>Elevated essentials with timeless sophistication and uncompromising quality.</p>
-                <a href="#collection" class="btn">Shop Now</a>
-            </div>
-        </section>
-        
-        <h2 class="section-title">Featured Products</h2>
-        
-        <section id="collection">
-            <h3 class="category-title">T-Shirts</h3>
-            <div class="collection-grid">
-                <div class="product-card">
-                    <img src="https://images.pexels.com/photos/9558699/pexels-photo-9558699.jpeg" alt="Premium Cotton T-Shirt" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Premium Cotton T-Shirt</h3>
-                        <p class="product-price">₹990</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="AIRism Cotton Crew Neck" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">AIRism Cotton Crew Neck</h3>
-                        <p class="product-price">₹1,290</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="U Crew Neck Short Sleeve" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">U Crew Neck Short Sleeve</h3>
-                        <p class="product-price">₹890</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dry-Ex Graphic T-Shirt" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Dry-Ex Graphic T-Shirt</h3>
-                        <p class="product-price">₹1,190</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.pexels.com/photos/8532616/pexels-photo-8532616.jpeg" alt="Supima Cotton V-Neck" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Supima Cotton V-Neck</h3>
-                        <p class="product-price">₹1,490</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1620799140408-edc6dcb6d633?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Heavyweight Pocket Tee" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Heavyweight Pocket Tee</h3>
-                        <p class="product-price">₹1,090</p>
-                    </div>
+
+    <!-- Hero Section -->
+    <section class="hero" id="home">
+        <div class="hero-content">
+            <h1>Wear Your Imagination</h1>
+            <p>Discover unique fashion inspired clothing that blends art and style.</p>
+            <a href="#shop" class="btn">Shop Now</a>
+        </div>
+    </section>
+
+    <!-- Featured Products -->
+    <section class="featured" id="shop">
+        <h2 class="section-title">Featured Collections</h2>
+        <div class="products">
+            <!-- Product 1 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1529374255404-311a2a4f1fd9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Graphic Tee" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Graphic Tee</h3>
+                    <a href="#" class="btn">Add to Cart</a>
                 </div>
             </div>
-            
-            <h3 class="category-title">Shirts</h3>
-            <div class="collection-grid">
-                <div class="product-card">
-                    <img src="https://images.pexels.com/photos/769733/pexels-photo-769733.jpeg" alt="Easy Care Oxford Shirt" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Easy Care Oxford Shirt</h3>
-                        <p class="product-price">₹1,990</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Linen-Cotton Button Down" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Linen-Cotton Button Down</h3>
-                        <p class="product-price">₹2,490</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.pexels.com/photos/6311392/pexels-photo-6311392.jpeg" alt="Flannel Check Shirt" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Flannel Check Shirt</h3>
-                        <p class="product-price">₹2,190</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dry-Ex Long Sleeve" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Dry-Ex Long Sleeve</h3>
-                        <p class="product-price">₹2,390</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.pexels.com/photos/4927361/pexels-photo-4927361.jpeg" alt="Chambray Workshirt" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Chambray Workshirt</h3>
-                        <p class="product-price">₹2,290</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1598033129183-c4f50c736f10?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Premium Cotton Broadcloth" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Premium Cotton Broadcloth</h3>
-                        <p class="product-price">₹2,590</p>
-                    </div>
+
+            <!-- Product 2 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Designer Hoodie" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Designer Hoodie</h3>
+                    <a href="#" class="btn">Add to Cart</a>
                 </div>
             </div>
-            
-            <h3 class="category-title">Jackets</h3>
-            <div class="collection-grid">
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1591047139829-d91aecb6caea?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ultra Light Down Jacket" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Ultra Light Down Jacket</h3>
-                        <p class="product-price">₹3,990</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.pexels.com/photos/1040173/pexels-photo-1040173.jpeg" alt="Blocktech Parka" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Blocktech Parka</h3>
-                        <p class="product-price">₹4,990</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1551232864-3f0890e580d9?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Wool-Blend Chester Coat" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Wool-Blend Chester Coat</h3>
-                        <p class="product-price">₹5,990</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.pexels.com/photos/1183266/pexels-photo-1183266.jpeg" alt="Ultra Light Down Vest" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Ultra Light Down Vest</h3>
-                        <p class="product-price">₹3,490</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1539533018447-63fcce2678e4?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Fleece Full-Zip Jacket" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Fleece Full-Zip Jacket</h3>
-                        <p class="product-price">₹2,990</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.pexels.com/photos/981090/pexels-photo-981090.jpeg" alt="Hybrid Down Coat" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Hybrid Down Coat</h3>
-                        <p class="product-price">₹6,490</p>
-                    </div>
+
+            <!-- Product 3 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Artistic Sweatshirt" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Artistic Sweatshirt</h3>
+                    <a href="#" class="btn">Add to Cart</a>
                 </div>
             </div>
-            
-            <h3 class="category-title">Pants</h3>
-            <div class="collection-grid">
-                <div class="product-card">
-                    <img src="https://images.pexels.com/photos/1598507/pexels-photo-1598507.jpeg" alt="Stretch Comfort Jeans" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Stretch Comfort Jeans</h3>
-                        <p class="product-price">₹2,490</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1542272604-787c3835535d?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="EZY Ankle Pants" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">EZY Ankle Pants</h3>
-                        <p class="product-price">₹1,990</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.pexels.com/photos/52518/jeans-pants-blue-shop-52518.jpeg" alt="Slim Fit Selvedge Jeans" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Slim Fit Selvedge Jeans</h3>
-                        <p class="product-price">₹3,290</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1473966968600-fa801b869a1a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Ultra Stretch Jogger Pants" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Ultra Stretch Jogger Pants</h3>
-                        <p class="product-price">₹2,190</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.pexels.com/photos/914668/pexels-photo-914668.jpeg" alt="Wide Fit Tapered Pants" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Wide Fit Tapered Pants</h3>
-                        <p class="product-price">₹2,390</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1541099649105-f69ad21f3246?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Dry-Ex Easy Shorts" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Dry-Ex Easy Shorts</h3>
-                        <p class="product-price">₹1,590</p>
-                    </div>
+
+            <!-- Product 4 -->
+            <div class="product-card">
+                <img src="https://images.unsplash.com/photo-1576566588028-4147f3842f27?ixlib=rb-4.0.3&auto=format&fit=crop&w=500&q=80" alt="Pattern T-Shirt" class="product-img">
+                <div class="product-info">
+                    <h3 class="product-title">Pattern T-Shirt</h3>
+                    <a href="#" class="btn">Add to Cart</a>
                 </div>
             </div>
-            
-            <h3 class="category-title">Polo Shirts</h3>
-            <div class="collection-grid">
-                <div class="product-card">
-                    <img src="https://images.pexels.com/photos/842811/pexels-photo-842811.jpeg" alt="Dry-Ex Polo Shirt" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Dry-Ex Polo Shirt</h3>
-                        <p class="product-price">₹1,490</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1527719327859-c6ce80353573?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Supima Cotton Polo" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Supima Cotton Polo</h3>
-                        <p class="product-price">₹1,790</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.pexels.com/photos/9558605/pexels-photo-9558605.jpeg" alt="AIRism UV Protection Polo" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">AIRism UV Protection Polo</h3>
-                        <p class="product-price">₹1,990</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1578932750355-5eb30ece487a?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Mesh Short Sleeve Polo" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Mesh Short Sleeve Polo</h3>
-                        <p class="product-price">₹1,690</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.pexels.com/photos/8532619/pexels-photo-8532619.jpeg" alt="Color Block Polo Shirt" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Color Block Polo Shirt</h3>
-                        <p class="product-price">₹1,890</p>
-                    </div>
-                </div>
-                
-                <div class="product-card">
-                    <img src="https://images.unsplash.com/photo-1620799140180-6b5ad4b1e355?ixlib=rb-1.2.1&auto=format&fit=crop&w=1350&q=80" alt="Premium Linen Polo" class="product-image">
-                    <div class="product-info">
-                        <h3 class="product-title">Premium Linen Polo</h3>
-                        <p class="product-price">₹2,290</p>
-                    </div>
-                </div>
+        </div>
+    </section>
+
+    <!-- About & Contact Section -->
+    <section class="about-contact" id="about">
+        <div class="about">
+            <h2>About Domine</h2>
+            <p>Domine is a premium clothing brand that brings artistic designs to life through wearable fashion. We combine high-quality materials with stunning patterns to create clothing that stands out.</p>
+            <p>Our mission is to bridge the gap between art and fashion, allowing you to express your unique style through your wardrobe.</p>
+        </div>
+        <div class="contact" id="contact">
+            <h2>Contact Us</h2>
+            <p>Have questions or need assistance? Reach out to our team!</p>
+            <div class="contact-info">
+                <p><i class="fas fa-user"></i> Karthick</p>
+                <p><i class="fas fa-envelope"></i> karthick@domine.in</p>
+                <p><i class="fas fa-phone"></i> +91 97918 81884</p>
+                <p><i class="fas fa-map-marker-alt"></i> Tirupur, Tamil Nadu</p>
             </div>
-        </section>
-    </main>
-    
+        </div>
+    </section>
+
+    <!-- Promo Banner -->
+    <section class="promo-banner">
+        <h2>Limited Time Offer!</h2>
+        <p>Get 20% off on all orders above ₹4,150. Use code <strong>DOMINE20</strong> at checkout.</p>
+        <a href="#shop" class="btn" style="background: #fff; color: #ff6b6b;">Shop Now</a>
+    </section>
+
+    <!-- Footer -->
     <footer>
         <div class="footer-links">
-            <a href="/about">About Us</a>
-            <a href="/stores">Stores</a>
-            <a href="/sustainability">Sustainability</a>
-            <a href="/help">Help</a>
-            <a href="/terms">Terms</a>
-            <a href="/privacy">Privacy</a>
+            <a href="#home">Home</a>
+            <a href="#shop">Shop</a>
+            <a href="#about">About</a>
+            <a href="#contact">Contact</a>
         </div>
-        <p class="copyright">© 2023 DOMINE APPAREL. All Rights Reserved.</p>
+        <div class="social-icons">
+            <a href="#"><i class="fab fa-instagram"></i></a>
+            <a href="#"><i class="fab fa-twitter"></i></a>
+            <a href="#"><i class="fab fa-facebook"></i></a>
+        </div>
+        <p class="copyright">© 2025 Domine. All Rights Reserved.</p>
     </footer>
+
+    <script>
+        // Scroll animation
+        document.addEventListener('DOMContentLoaded', function() {
+            const animateElements = document.querySelectorAll('.featured, .product-card, .about, .contact');
+            
+            const animateOnScroll = function() {
+                animateElements.forEach(element => {
+                    const elementPosition = element.getBoundingClientRect().top;
+                    const windowHeight = window.innerHeight;
+                    
+                    if (elementPosition < windowHeight - 100) {
+                        element.classList.add('animate');
+                    }
+                });
+                
+                // Scroll to top button
+                const scrollTopBtn = document.querySelector('.scroll-top');
+                if (window.scrollY > 300) {
+                    scrollTopBtn.classList.add('active');
+                } else {
+                    scrollTopBtn.classList.remove('active');
+                }
+            };
+            
+            // Initial check
+            animateOnScroll();
+            
+            // Check on scroll
+            window.addEventListener('scroll', animateOnScroll);
+            
+            // Smooth scrolling for anchor links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function(e) {
+                    e.preventDefault();
+                    
+                    const targetId = this.getAttribute('href');
+                    const targetElement = document.querySelector(targetId);
+                    
+                    if (targetElement) {
+                        window.scrollTo({
+                            top: targetElement.offsetTop - 80,
+                            behavior: 'smooth'
+                        });
+                    }
+                });
+            });
+            
+            // Scroll to top functionality
+            document.querySelector('.scroll-top').addEventListener('click', function() {
+                window.scrollTo({
+                    top: 0,
+                    behavior: 'smooth'
+                });
+            });
+        });
+    </script>
 </body>
 </html>
