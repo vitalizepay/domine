@@ -3,7 +3,7 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>DOMIN - Unique Fashion Inspired Clothing</title>
+    <title>DOMINE - Unique Fashion Inspired Clothing</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
@@ -26,7 +26,7 @@
             font-weight: 700;
             font-size: 1.75rem;
             letter-spacing: 1px;
-            color: var(--primary-color);
+            color: #000; /* Changed to black for visibility */
         }
         .nav-link {
             transition: color 0.3s ease;
@@ -114,7 +114,7 @@
     <!-- Header -->
     <header class="bg-white shadow-md sticky top-0 z-40">
         <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="logo">DOMIN</a>
+            <a href="#" class="logo">DOMINE</a>
             <div class="hidden md:flex items-center space-x-8">
                 <a href="#home" class="nav-link text-gray-600">Home</a>
                 <a href="#tshirts" class="nav-link text-gray-600">Shop</a>
@@ -133,7 +133,7 @@
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative h-[80vh] bg-cover bg-center text-white" style="background-image: url('https://placehold.co/1920x1080/333/fff?text=DOMIN+Fashion');">
+    <section id="home" class="relative h-[80vh] bg-cover bg-center text-white" style="background-image: url('https://placehold.co/1920x1080/333/fff?text=DOMINE+Fashion');">
         <div class="absolute inset-0 bg-black bg-opacity-50"></div>
         <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
             <h1 class="text-4xl md:text-6xl font-bold leading-tight animate-fade-in">Wear Your Imagination</h1>
@@ -153,7 +153,7 @@
     <!-- Promo Banner -->
     <section class="bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover)] text-white text-center py-12 my-12 fade-in" style="animation: pulse 2s infinite alternate;">
         <h2 class="text-3xl font-bold">Limited Time Offer!</h2>
-        <p class="mt-2">Get 20% off on all orders above ₹4,150. Use code <strong>DOMIN20</strong> at checkout.</p>
+        <p class="mt-2">Get 20% off on all orders above ₹4,150. Use code <strong>DOMINE20</strong> at checkout.</p>
         <a href="#tshirts" class="mt-6 inline-block bg-white text-[var(--primary-color)] font-bold py-2 px-6 rounded-lg">Shop Now</a>
     </section>
 
@@ -161,8 +161,8 @@
     <section id="about" class="container mx-auto px-6 py-16">
         <div class="grid md:grid-cols-2 gap-12">
             <div class="fade-in">
-                <h2 class="text-2xl font-bold mb-4 text-[var(--primary-color)]">About DOMIN</h2>
-                <p class="text-gray-600 leading-relaxed">DOMIN is a premium clothing brand that brings artistic designs to life through wearable fashion. We combine high-quality materials with stunning patterns to create clothing that stands out.</p>
+                <h2 class="text-2xl font-bold mb-4 text-[var(--primary-color)]">About DOMINE</h2>
+                <p class="text-gray-600 leading-relaxed">DOMINE is a premium clothing brand that brings artistic designs to life through wearable fashion. We combine high-quality materials with stunning patterns to create clothing that stands out.</p>
                 <p class="text-gray-600 leading-relaxed mt-4">Our mission is to bridge the gap between art and fashion, allowing you to express your unique style through your wardrobe.</p>
             </div>
             <div id="contact" class="fade-in">
@@ -192,7 +192,7 @@
                 <a href="#" class="hover:text-[var(--primary-color)] transition-transform duration-300 hover:-translate-y-1"><i class="fab fa-twitter text-xl"></i></a>
                 <a href="#" class="hover:text-[var(--primary-color)] transition-transform duration-300 hover:-translate-y-1"><i class="fab fa-instagram text-xl"></i></a>
             </div>
-            <p class="mt-6 text-gray-400">&copy; 2025 DOMIN. All Rights Reserved.</p>
+            <p class="mt-6 text-gray-400">&copy; 2025 DOMINE. All Rights Reserved.</p>
         </div>
     </footer>
 
@@ -262,9 +262,9 @@
             // --- Product Data ---
             const tshirts = [...Array.from({ length: 52 }, (_, i) => ({
                 id: i + 1,
-                name: `DOMIN Graphic Tee ${i + 1}`,
+                name: `DOMINE Graphic Tee ${i + 1}`,
                 price: 999 + Math.floor(Math.random() * 500),
-                image: `https://placehold.co/400x500/f1f5f9/334155?text=DOMIN+Tee+${i+1}`
+                image: `https://placehold.co/400x500/f1f5f9/334155?text=DOMINE+Tee+${i+1}`
             }))];
 
             // --- Render Products ---
