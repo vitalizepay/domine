@@ -259,13 +259,13 @@
 
             let cart = [];
 
-            // --- Product Data ---
-            const tshirts = [...Array.from({ length: 52 }, (_, i) => ({
-                id: i + 1,
-                name: `DOMINE Graphic Tee ${i + 1}`,
-                price: 999 + Math.floor(Math.random() * 500),
-                image: `https://placehold.co/400x500/f1f5f9/334155?text=DOMINE+Tee+${i+1}`
-            }))];
+        const tshirts = [...Array.from({ length: 52 }, (_, i) => ({
+    id: i + 1,
+    name: `DOMINE Graphic Tee ${i + 1}`,
+    price: 999 + Math.floor(Math.random() * 500),
+    image: `images/image${i + 1}.jpg` // Local image path
+}))];
+
 
             // --- Render Products ---
             function renderProducts() {
