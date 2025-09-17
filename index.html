@@ -5,8 +5,9 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOMINE - Unique Fashion Inspired Clothing</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&family=Space+Grotesk:wght@300;400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script src="https://checkout.razorpay.com/v1/checkout.js"></script>
     <script>
         tailwind.config = {
             theme: {
@@ -14,6 +15,7 @@
                     fontFamily: {
                         'inter': ['Inter', 'sans-serif'],
                         'playfair': ['Playfair Display', 'serif'],
+                        'space': ['Space Grotesk', 'sans-serif'],
                     },
                     colors: {
                         primary: {
@@ -23,9 +25,11 @@
                             600: '#dc2626',
                             700: '#b91c1c',
                         },
-                        dark: {
-                            800: '#1f2937',
-                            900: '#111827',
+                        neon: {
+                            pink: '#ff0080',
+                            blue: '#0080ff',
+                            green: '#00ff80',
+                            purple: '#8000ff',
                         }
                     },
                     animation: {
@@ -34,17 +38,24 @@
                         'fade-in-right': 'fadeInRight 0.8s ease-out forwards',
                         'scale-in': 'scaleIn 0.6s ease-out forwards',
                         'float': 'float 6s ease-in-out infinite',
+                        'pulse-glow': 'pulseGlow 2s ease-in-out infinite',
+                        'rotate-slow': 'rotateSlow 20s linear infinite',
+                        'bounce-slow': 'bounceSlow 3s ease-in-out infinite',
+                        'gradient-shift': 'gradientShift 3s ease-in-out infinite',
+                        'text-glow': 'textGlow 2s ease-in-out infinite alternate',
                     }
                 }
             }
         }
     </script>
     <style>
-        /* Custom Styles & Animations */
+        /* Enhanced Creative Styles */
         :root {
             --primary-gradient: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            --neon-gradient: linear-gradient(45deg, #ff0080, #0080ff, #00ff80, #8000ff);
             --glass-bg: rgba(255, 255, 255, 0.1);
             --glass-border: rgba(255, 255, 255, 0.2);
+            --dark-glass: rgba(0, 0, 0, 0.1);
         }
 
         * {
@@ -53,233 +64,324 @@
 
         body {
             font-family: 'Inter', sans-serif;
-            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
             overflow-x: hidden;
+            color: #ffffff;
         }
 
-        /* Glass morphism effect */
+        /* Creative Background Effects */
+        .creative-bg {
+            position: fixed;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            z-index: -1;
+            background: linear-gradient(135deg, #0f0f23 0%, #1a1a2e 50%, #16213e 100%);
+        }
+
+        .creative-bg::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 20% 80%, rgba(255, 0, 128, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 80% 20%, rgba(0, 128, 255, 0.1) 0%, transparent 50%),
+                radial-gradient(circle at 40% 40%, rgba(128, 0, 255, 0.1) 0%, transparent 50%);
+            animation: gradient-shift 8s ease-in-out infinite;
+        }
+
+        /* Glass morphism enhanced */
         .glass {
-            background: var(--glass-bg);
+            background: rgba(255, 255, 255, 0.05);
             backdrop-filter: blur(20px);
-            border: 1px solid var(--glass-border);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+            box-shadow: 0 8px 32px rgba(0, 0, 0, 0.3);
         }
 
-        /* Custom animations */
+        .glass-dark {
+            background: rgba(0, 0, 0, 0.2);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        /* Creative Animations */
         @keyframes fadeInUp {
-            from {
-                opacity: 0;
-                transform: translateY(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateY(0);
-            }
+            from { opacity: 0; transform: translateY(30px); }
+            to { opacity: 1; transform: translateY(0); }
         }
 
         @keyframes fadeInLeft {
-            from {
-                opacity: 0;
-                transform: translateX(-30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(-30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes fadeInRight {
-            from {
-                opacity: 0;
-                transform: translateX(30px);
-            }
-            to {
-                opacity: 1;
-                transform: translateX(0);
-            }
+            from { opacity: 0; transform: translateX(30px); }
+            to { opacity: 1; transform: translateX(0); }
         }
 
         @keyframes scaleIn {
-            from {
-                opacity: 0;
-                transform: scale(0.9);
-            }
-            to {
-                opacity: 1;
-                transform: scale(1);
-            }
+            from { opacity: 0; transform: scale(0.9); }
+            to { opacity: 1; transform: scale(1); }
         }
 
         @keyframes float {
-            0%, 100% { transform: translateY(0px); }
-            50% { transform: translateY(-20px); }
+            0%, 100% { transform: translateY(0px) rotate(0deg); }
+            50% { transform: translateY(-20px) rotate(5deg); }
         }
 
-        /* Modern button styles */
-        .btn-modern {
+        @keyframes pulseGlow {
+            0%, 100% { box-shadow: 0 0 20px rgba(239, 68, 68, 0.5); }
+            50% { box-shadow: 0 0 40px rgba(239, 68, 68, 0.8), 0 0 60px rgba(239, 68, 68, 0.3); }
+        }
+
+        @keyframes rotateSlow {
+            from { transform: rotate(0deg); }
+            to { transform: rotate(360deg); }
+        }
+
+        @keyframes bounceSlow {
+            0%, 100% { transform: translateY(0); }
+            50% { transform: translateY(-10px); }
+        }
+
+        @keyframes gradientShift {
+            0%, 100% { opacity: 1; }
+            50% { opacity: 0.7; }
+        }
+
+        @keyframes textGlow {
+            from { text-shadow: 0 0 10px rgba(239, 68, 68, 0.5); }
+            to { text-shadow: 0 0 20px rgba(239, 68, 68, 0.8), 0 0 30px rgba(239, 68, 68, 0.3); }
+        }
+
+        /* Creative Button Styles */
+        .btn-neon {
             position: relative;
+            background: linear-gradient(45deg, #ff0080, #0080ff);
+            border: none;
             overflow: hidden;
             transition: all 0.3s ease;
         }
 
-        .btn-modern::before {
+        .btn-neon::before {
             content: '';
             position: absolute;
             top: 0;
             left: -100%;
             width: 100%;
             height: 100%;
-            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.3), transparent);
             transition: left 0.5s;
         }
 
-        .btn-modern:hover::before {
+        .btn-neon:hover::before {
             left: 100%;
         }
 
-        /* Product card hover effects */
-        .product-card {
+        .btn-neon:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 10px 30px rgba(255, 0, 128, 0.3);
+        }
+
+        /* Creative Product Cards */
+        .product-card-creative {
+            background: rgba(255, 255, 255, 0.05);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.1);
             transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+            position: relative;
+            overflow: hidden;
         }
 
-        .product-card:hover {
+        .product-card-creative::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(45deg, rgba(255, 0, 128, 0.1), rgba(0, 128, 255, 0.1));
+            opacity: 0;
+            transition: opacity 0.3s ease;
+        }
+
+        .product-card-creative:hover::before {
+            opacity: 1;
+        }
+
+        .product-card-creative:hover {
             transform: translateY(-15px) scale(1.02);
-            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+            box-shadow: 0 25px 50px rgba(255, 0, 128, 0.2);
+            border-color: rgba(255, 0, 128, 0.3);
         }
 
-        .product-card:hover .product-image {
-            transform: scale(1.1);
+        /* Hero Section Creative */
+        .hero-creative {
+            background: linear-gradient(135deg, rgba(15, 15, 35, 0.9) 0%, rgba(26, 26, 46, 0.8) 100%),
+                        url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop') center/cover;
+            position: relative;
+            overflow: hidden;
         }
 
-        .product-image {
-            transition: transform 0.4s ease;
+        .hero-creative::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: 0;
+            width: 100%;
+            height: 100%;
+            background: 
+                radial-gradient(circle at 30% 70%, rgba(255, 0, 128, 0.2) 0%, transparent 50%),
+                radial-gradient(circle at 70% 30%, rgba(0, 128, 255, 0.2) 0%, transparent 50%);
+            animation: gradient-shift 6s ease-in-out infinite;
         }
 
-        /* Navigation styles */
-        .nav-link {
+        /* Creative Floating Elements */
+        .floating-element {
+            position: absolute;
+            border-radius: 50%;
+            animation: float 6s ease-in-out infinite;
+        }
+
+        .floating-element:nth-child(1) { animation-delay: 0s; }
+        .floating-element:nth-child(2) { animation-delay: -2s; }
+        .floating-element:nth-child(3) { animation-delay: -4s; }
+
+        /* Navigation Creative */
+        .nav-creative {
+            background: rgba(0, 0, 0, 0.1);
+            backdrop-filter: blur(20px);
+            border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+        }
+
+        .nav-link-creative {
             position: relative;
             transition: all 0.3s ease;
+            color: rgba(255, 255, 255, 0.8);
         }
 
-        .nav-link::after {
+        .nav-link-creative::after {
             content: '';
             position: absolute;
             bottom: -5px;
             left: 50%;
             width: 0;
             height: 2px;
-            background: var(--primary-gradient);
+            background: linear-gradient(45deg, #ff0080, #0080ff);
             transition: all 0.3s ease;
             transform: translateX(-50%);
         }
 
-        .nav-link:hover::after {
+        .nav-link-creative:hover {
+            color: #ffffff;
+            text-shadow: 0 0 10px rgba(255, 0, 128, 0.5);
+        }
+
+        .nav-link-creative:hover::after {
             width: 100%;
         }
 
-        /* Hero section styles */
-        .hero-bg {
-            background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(31, 41, 55, 0.6) 100%),
-                        url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop') center/cover;
+        /* Creative Sections */
+        .section-creative {
+            background: rgba(255, 255, 255, 0.02);
+            backdrop-filter: blur(10px);
+            border-top: 1px solid rgba(255, 255, 255, 0.05);
         }
 
-        /* Scroll animations */
-        .animate-on-scroll {
-            opacity: 0;
-            transform: translateY(30px);
-            transition: all 0.8s ease-out;
+        /* Payment Success Animation */
+        .payment-success {
+            background: linear-gradient(135deg, #00ff80, #00cc66);
+            animation: pulse-glow 2s ease-in-out infinite;
         }
 
-        .animate-on-scroll.animated {
-            opacity: 1;
-            transform: translateY(0);
+        .success-checkmark {
+            animation: scaleIn 0.6s ease-out;
         }
 
-        /* Custom scrollbar */
+        /* Email Verification Styles */
+        .verification-card {
+            background: rgba(255, 255, 255, 0.1);
+            backdrop-filter: blur(20px);
+            border: 1px solid rgba(255, 255, 255, 0.2);
+            animation: fade-in-up 0.8s ease-out;
+        }
+
+        /* Creative Scrollbar */
         ::-webkit-scrollbar {
             width: 8px;
         }
 
         ::-webkit-scrollbar-track {
-            background: #f1f5f9;
+            background: rgba(255, 255, 255, 0.1);
         }
 
         ::-webkit-scrollbar-thumb {
-            background: var(--primary-gradient);
+            background: linear-gradient(45deg, #ff0080, #0080ff);
             border-radius: 4px;
         }
 
         ::-webkit-scrollbar-thumb:hover {
-            background: #dc2626;
+            background: linear-gradient(45deg, #ff0099, #0099ff);
         }
 
-        /* Mobile menu */
-        .mobile-menu {
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
+        /* Mobile Responsive Enhancements */
+        @media (max-width: 768px) {
+            .hero-creative {
+                min-height: 100vh;
+            }
+            
+            .floating-element {
+                display: none;
+            }
         }
 
-        .mobile-menu.active {
-            transform: translateX(0);
-        }
-
-        /* Cart sidebar */
-        .cart-sidebar {
-            transform: translateX(100%);
-            transition: transform 0.3s ease-in-out;
-        }
-
-        .cart-sidebar.active {
-            transform: translateX(0);
-        }
-
-        /* Loading animation */
-        .loading-spinner {
-            border: 3px solid #f3f4f6;
-            border-top: 3px solid #ef4444;
-            border-radius: 50%;
-            width: 24px;
-            height: 24px;
-            animation: spin 1s linear infinite;
-        }
-
-        @keyframes spin {
-            0% { transform: rotate(0deg); }
-            100% { transform: rotate(360deg); }
+        /* Loading Animation Enhanced */
+        .loading-creative {
+            background: linear-gradient(45deg, #ff0080, #0080ff, #00ff80, #8000ff);
+            background-size: 400% 400%;
+            animation: gradient-shift 2s ease-in-out infinite;
         }
     </style>
 </head>
 <body class="font-inter">
+    <!-- Creative Background -->
+    <div class="creative-bg"></div>
 
     <!-- Header -->
-    <header class="fixed top-0 w-full z-50 glass backdrop-blur-md">
+    <header class="fixed top-0 w-full z-50 nav-creative">
         <nav class="container mx-auto px-6 py-4">
             <div class="flex justify-between items-center">
                 <!-- Logo -->
-                <a href="#" class="font-playfair text-3xl font-bold text-gray-900 tracking-wider">
+                <a href="#" class="font-playfair text-3xl font-bold text-white tracking-wider animate-text-glow">
                     DOMINE
                 </a>
 
                 <!-- Desktop Navigation -->
                 <div class="hidden lg:flex items-center space-x-8">
-                    <a href="#home" class="nav-link text-gray-700 hover:text-red-500 font-medium">Home</a>
-                    <a href="#collection" class="nav-link text-gray-700 hover:text-red-500 font-medium">Collection</a>
-                    <a href="#about" class="nav-link text-gray-700 hover:text-red-500 font-medium">About</a>
-                    <a href="#contact" class="nav-link text-gray-700 hover:text-red-500 font-medium">Contact</a>
+                    <a href="#home" class="nav-link-creative font-medium">Home</a>
+                    <a href="#collection" class="nav-link-creative font-medium">Collection</a>
+                    <a href="#about" class="nav-link-creative font-medium">About</a>
+                    <a href="#contact" class="nav-link-creative font-medium">Contact</a>
                 </div>
 
                 <!-- Action Buttons -->
                 <div class="flex items-center space-x-4">
-                    <button class="p-2 text-gray-700 hover:text-red-500 transition-colors">
+                    <button class="p-2 text-white/80 hover:text-white transition-colors">
                         <i class="fas fa-search text-lg"></i>
                     </button>
-                    <button class="p-2 text-gray-700 hover:text-red-500 transition-colors">
+                    <button class="p-2 text-white/80 hover:text-white transition-colors">
                         <i class="fas fa-user text-lg"></i>
                     </button>
-                    <button id="cart-toggle" class="relative p-2 text-gray-700 hover:text-red-500 transition-colors">
+                    <button id="cart-toggle" class="relative p-2 text-white/80 hover:text-white transition-colors">
                         <i class="fas fa-shopping-bag text-lg"></i>
-                        <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">0</span>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-gradient-to-r from-red-500 to-pink-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium animate-pulse-glow">0</span>
                     </button>
-                    <button id="mobile-menu-toggle" class="lg:hidden p-2 text-gray-700">
+                    <button id="mobile-menu-toggle" class="lg:hidden p-2 text-white/80">
                         <i class="fas fa-bars text-lg"></i>
                     </button>
                 </div>
@@ -287,107 +389,106 @@
         </nav>
 
         <!-- Mobile Menu -->
-        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-80 bg-white shadow-2xl lg:hidden z-50">
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-80 glass-dark shadow-2xl lg:hidden z-50">
             <div class="p-6">
                 <div class="flex justify-between items-center mb-8">
-                    <span class="font-playfair text-2xl font-bold text-gray-900">Menu</span>
-                    <button id="mobile-menu-close" class="p-2 text-gray-700">
+                    <span class="font-playfair text-2xl font-bold text-white">Menu</span>
+                    <button id="mobile-menu-close" class="p-2 text-white/80">
                         <i class="fas fa-times text-xl"></i>
                     </button>
                 </div>
                 <nav class="space-y-6">
-                    <a href="#home" class="block text-lg text-gray-700 hover:text-red-500 transition-colors">Home</a>
-                    <a href="#collection" class="block text-lg text-gray-700 hover:text-red-500 transition-colors">Collection</a>
-                    <a href="#about" class="block text-lg text-gray-700 hover:text-red-500 transition-colors">About</a>
-                    <a href="#contact" class="block text-lg text-gray-700 hover:text-red-500 transition-colors">Contact</a>
+                    <a href="#home" class="block text-lg text-white/80 hover:text-white transition-colors">Home</a>
+                    <a href="#collection" class="block text-lg text-white/80 hover:text-white transition-colors">Collection</a>
+                    <a href="#about" class="block text-lg text-white/80 hover:text-white transition-colors">About</a>
+                    <a href="#contact" class="block text-lg text-white/80 hover:text-white transition-colors">Contact</a>
                 </nav>
             </div>
         </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-transparent"></div>
-        
-        <!-- Floating elements -->
-        <div class="absolute top-20 left-10 w-20 h-20 bg-red-500/20 rounded-full animate-float"></div>
-        <div class="absolute bottom-32 right-16 w-16 h-16 bg-white/10 rounded-full animate-float" style="animation-delay: -2s;"></div>
-        <div class="absolute top-1/2 left-1/4 w-12 h-12 bg-red-400/30 rounded-full animate-float" style="animation-delay: -4s;"></div>
+    <section id="home" class="hero-creative min-h-screen flex items-center justify-center text-white relative overflow-hidden">
+        <!-- Creative Floating Elements -->
+        <div class="floating-element top-20 left-10 w-20 h-20 bg-gradient-to-r from-pink-500/30 to-purple-500/30"></div>
+        <div class="floating-element bottom-32 right-16 w-16 h-16 bg-gradient-to-r from-blue-500/30 to-cyan-500/30"></div>
+        <div class="floating-element top-1/2 left-1/4 w-12 h-12 bg-gradient-to-r from-green-500/30 to-emerald-500/30"></div>
+        <div class="floating-element top-1/3 right-1/3 w-24 h-24 bg-gradient-to-r from-red-500/20 to-orange-500/20"></div>
 
-        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
-            <h1 class="font-playfair text-5xl md:text-7xl font-bold leading-tight mb-6 animate-fade-in-up">
+        <div class="relative z-10 text-center px-6 max-w-5xl mx-auto">
+            <h1 class="font-space text-6xl md:text-8xl font-bold leading-tight mb-6 animate-fade-in-up">
                 Wear Your
-                <span class="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
+                <span class="bg-gradient-to-r from-pink-400 via-red-500 to-blue-500 bg-clip-text text-transparent animate-text-glow">
                     Imagination
                 </span>
             </h1>
-            <p class="text-xl md:text-2xl text-gray-200 mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">
-                Discover unique fashion-inspired clothing that blends art and style
+            <p class="text-xl md:text-2xl text-gray-200 mb-8 animate-fade-in-up font-light" style="animation-delay: 0.2s;">
+                Discover unique fashion-inspired clothing that blends art, technology, and style
             </p>
-            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s;">
-                <a href="#collection" class="btn-modern bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
-                    Shop Collection
+            <div class="flex flex-col sm:flex-row gap-6 justify-center animate-fade-in-up" style="animation-delay: 0.4s;">
+                <a href="#collection" class="btn-neon text-white px-10 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    Explore Collection
                 </a>
-                <a href="#about" class="btn-modern border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300">
-                    Learn More
+                <a href="#about" class="glass border-2 border-white/30 text-white hover:bg-white/10 px-10 py-4 rounded-full font-semibold text-lg transition-all duration-300">
+                    Our Story
                 </a>
             </div>
         </div>
     </section>
 
     <!-- Features Section -->
-    <section class="py-20 bg-white">
+    <section class="py-20 section-creative">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-3 gap-8">
-                <div class="text-center animate-on-scroll">
-                    <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="text-center animate-on-scroll glass rounded-2xl p-8">
+                    <div class="w-16 h-16 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse-glow">
                         <i class="fas fa-palette text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Artistic Designs</h3>
-                    <p class="text-gray-600">Unique patterns and designs that stand out from the crowd</p>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Artistic Designs</h3>
+                    <p class="text-gray-300">Unique patterns and designs that stand out from the crowd</p>
                 </div>
-                <div class="text-center animate-on-scroll" style="animation-delay: 0.2s;">
-                    <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="text-center animate-on-scroll glass rounded-2xl p-8" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse-glow">
                         <i class="fas fa-award text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Premium Quality</h3>
-                    <p class="text-gray-600">High-quality materials for comfort and durability</p>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Premium Quality</h3>
+                    <p class="text-gray-300">High-quality materials for comfort and durability</p>
                 </div>
-                <div class="text-center animate-on-scroll" style="animation-delay: 0.4s;">
-                    <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                <div class="text-center animate-on-scroll glass rounded-2xl p-8" style="animation-delay: 0.4s;">
+                    <div class="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center mx-auto mb-4 animate-pulse-glow">
                         <i class="fas fa-shipping-fast text-white text-2xl"></i>
                     </div>
-                    <h3 class="text-xl font-semibold mb-2">Fast Delivery</h3>
-                    <p class="text-gray-600">Quick and reliable shipping across India</p>
+                    <h3 class="text-xl font-semibold mb-2 text-white">Fast Delivery</h3>
+                    <p class="text-gray-300">Quick and reliable shipping across India</p>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Collection Section -->
-    <section id="collection" class="py-20 bg-gray-50">
+    <section id="collection" class="py-20 section-creative">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 animate-on-scroll">
-                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                <h2 class="font-space text-5xl md:text-6xl font-bold text-white mb-4 animate-text-glow">
                     Our Collection
                 </h2>
-                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                <p class="text-xl text-gray-300 max-w-2xl mx-auto">
                     Explore our carefully curated selection of artistic t-shirts
                 </p>
             </div>
 
             <!-- Filter Buttons -->
             <div class="flex flex-wrap justify-center gap-4 mb-12 animate-on-scroll">
-                <button class="filter-btn active px-6 py-2 rounded-full bg-red-500 text-white font-medium transition-all duration-300" data-filter="all">
+                <button class="filter-btn active px-8 py-3 rounded-full bg-gradient-to-r from-pink-500 to-purple-600 text-white font-medium transition-all duration-300 shadow-lg" data-filter="all">
                     All Designs
                 </button>
-                <button class="filter-btn px-6 py-2 rounded-full bg-white text-gray-700 hover:bg-red-500 hover:text-white font-medium transition-all duration-300" data-filter="graphic">
+                <button class="filter-btn px-8 py-3 rounded-full glass text-white hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-600 font-medium transition-all duration-300" data-filter="graphic">
                     Graphic
                 </button>
-                <button class="filter-btn px-6 py-2 rounded-full bg-white text-gray-700 hover:bg-red-500 hover:text-white font-medium transition-all duration-300" data-filter="minimal">
+                <button class="filter-btn px-8 py-3 rounded-full glass text-white hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-600 font-medium transition-all duration-300" data-filter="minimal">
                     Minimal
                 </button>
-                <button class="filter-btn px-6 py-2 rounded-full bg-white text-gray-700 hover:bg-red-500 hover:text-white font-medium transition-all duration-300" data-filter="artistic">
+                <button class="filter-btn px-8 py-3 rounded-full glass text-white hover:bg-gradient-to-r hover:from-pink-500 hover:to-purple-600 font-medium transition-all duration-300" data-filter="artistic">
                     Artistic
                 </button>
             </div>
@@ -399,7 +500,7 @@
 
             <!-- Load More Button -->
             <div class="text-center mt-12 animate-on-scroll">
-                <button id="load-more" class="btn-modern bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                <button id="load-more" class="btn-neon text-white px-10 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                     Load More Products
                 </button>
             </div>
@@ -407,17 +508,17 @@
     </section>
 
     <!-- Promo Banner -->
-    <section class="py-16 bg-gradient-to-r from-red-500 to-red-600 text-white relative overflow-hidden">
-        <div class="absolute inset-0 bg-black/10"></div>
+    <section class="py-16 bg-gradient-to-r from-pink-600 via-purple-600 to-blue-600 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/20"></div>
         <div class="container mx-auto px-6 text-center relative z-10">
             <div class="animate-on-scroll">
-                <h2 class="font-playfair text-3xl md:text-4xl font-bold mb-4">
+                <h2 class="font-space text-4xl md:text-5xl font-bold mb-4 animate-text-glow">
                     Limited Time Offer!
                 </h2>
                 <p class="text-xl mb-6">
-                    Get 20% off on all orders above ₹4,150. Use code <span class="font-bold bg-white/20 px-3 py-1 rounded-lg">DOMINE20</span>
+                    Get 20% off on all orders above ₹4,150. Use code <span class="font-bold bg-white/20 px-4 py-2 rounded-lg animate-pulse-glow">DOMINE20</span>
                 </p>
-                <a href="#collection" class="btn-modern bg-white text-red-600 hover:bg-gray-100 px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                <a href="#collection" class="btn-neon bg-white text-purple-600 hover:bg-gray-100 px-10 py-4 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                     Shop Now
                 </a>
             </div>
@@ -425,101 +526,103 @@
     </section>
 
     <!-- About Section -->
-    <section id="about" class="py-20 bg-white">
+    <section id="about" class="py-20 section-creative">
         <div class="container mx-auto px-6">
             <div class="grid lg:grid-cols-2 gap-16 items-center">
                 <div class="animate-on-scroll">
-                    <h2 class="font-playfair text-4xl font-bold text-gray-900 mb-6">
+                    <h2 class="font-space text-5xl font-bold text-white mb-6 animate-text-glow">
                         About DOMINE
                     </h2>
-                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                    <p class="text-lg text-gray-300 mb-6 leading-relaxed">
                         DOMINE is a premium clothing brand that brings artistic designs to life through wearable fashion. We combine high-quality materials with stunning patterns to create clothing that stands out.
                     </p>
-                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                    <p class="text-lg text-gray-300 mb-8 leading-relaxed">
                         Our mission is to bridge the gap between art and fashion, allowing you to express your unique style through your wardrobe.
                     </p>
                     <div class="grid grid-cols-2 gap-6">
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-red-500 mb-2">1000+</div>
-                            <div class="text-gray-600">Happy Customers</div>
+                        <div class="text-center glass rounded-xl p-6">
+                            <div class="text-4xl font-bold bg-gradient-to-r from-pink-400 to-purple-600 bg-clip-text text-transparent mb-2">1000+</div>
+                            <div class="text-gray-300">Happy Customers</div>
                         </div>
-                        <div class="text-center">
-                            <div class="text-3xl font-bold text-red-500 mb-2">50+</div>
-                            <div class="text-gray-600">Unique Designs</div>
+                        <div class="text-center glass rounded-xl p-6">
+                            <div class="text-4xl font-bold bg-gradient-to-r from-blue-400 to-cyan-600 bg-clip-text text-transparent mb-2">50+</div>
+                            <div class="text-gray-300">Unique Designs</div>
                         </div>
                     </div>
                 </div>
                 <div class="animate-on-scroll" style="animation-delay: 0.2s;">
-                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=2070&auto=format&fit=crop" alt="About DOMINE" class="rounded-2xl shadow-2xl">
+                    <div class="glass rounded-2xl p-4">
+                        <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=2070&auto=format&fit=crop" alt="About DOMINE" class="rounded-xl shadow-2xl w-full">
+                    </div>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Contact Section -->
-    <section id="contact" class="py-20 bg-gray-50">
+    <section id="contact" class="py-20 section-creative">
         <div class="container mx-auto px-6">
             <div class="text-center mb-16 animate-on-scroll">
-                <h2 class="font-playfair text-4xl font-bold text-gray-900 mb-4">
+                <h2 class="font-space text-5xl font-bold text-white mb-4 animate-text-glow">
                     Get In Touch
                 </h2>
-                <p class="text-xl text-gray-600">
+                <p class="text-xl text-gray-300">
                     Have questions? We'd love to hear from you.
                 </p>
             </div>
             <div class="grid lg:grid-cols-2 gap-16">
                 <div class="animate-on-scroll">
                     <div class="space-y-8">
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center">
+                        <div class="flex items-center space-x-4 glass rounded-xl p-6">
+                            <div class="w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center animate-pulse-glow">
                                 <i class="fas fa-user text-white"></i>
                             </div>
                             <div>
-                                <h3 class="font-semibold text-gray-900">Contact Person</h3>
-                                <p class="text-gray-600">Karthick</p>
+                                <h3 class="font-semibold text-white">Contact Person</h3>
+                                <p class="text-gray-300">Karthick</p>
                             </div>
                         </div>
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center">
+                        <div class="flex items-center space-x-4 glass rounded-xl p-6">
+                            <div class="w-12 h-12 bg-gradient-to-r from-blue-500 to-cyan-600 rounded-full flex items-center justify-center animate-pulse-glow">
                                 <i class="fas fa-envelope text-white"></i>
                             </div>
                             <div>
-                                <h3 class="font-semibold text-gray-900">Email</h3>
-                                <p class="text-gray-600">karthick@domine.in</p>
+                                <h3 class="font-semibold text-white">Email</h3>
+                                <p class="text-gray-300">karthick@domine.in</p>
                             </div>
                         </div>
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center">
+                        <div class="flex items-center space-x-4 glass rounded-xl p-6">
+                            <div class="w-12 h-12 bg-gradient-to-r from-green-500 to-emerald-600 rounded-full flex items-center justify-center animate-pulse-glow">
                                 <i class="fas fa-phone text-white"></i>
                             </div>
                             <div>
-                                <h3 class="font-semibold text-gray-900">Phone</h3>
-                                <p class="text-gray-600">+91 97918 81884</p>
+                                <h3 class="font-semibold text-white">Phone</h3>
+                                <p class="text-gray-300">+91 97918 81884</p>
                             </div>
                         </div>
-                        <div class="flex items-center space-x-4">
-                            <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center">
+                        <div class="flex items-center space-x-4 glass rounded-xl p-6">
+                            <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-pink-600 rounded-full flex items-center justify-center animate-pulse-glow">
                                 <i class="fas fa-map-marker-alt text-white"></i>
                             </div>
                             <div>
-                                <h3 class="font-semibold text-gray-900">Location</h3>
-                                <p class="text-gray-600">Tirupur, Tamil Nadu</p>
+                                <h3 class="font-semibold text-white">Location</h3>
+                                <p class="text-gray-300">Tirupur, Tamil Nadu</p>
                             </div>
                         </div>
                     </div>
                 </div>
                 <div class="animate-on-scroll" style="animation-delay: 0.2s;">
-                    <form class="space-y-6">
+                    <form class="space-y-6 glass rounded-2xl p-8">
                         <div>
-                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition-all duration-300">
+                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-pink-500 focus:ring-2 focus:ring-pink-200/20 outline-none transition-all duration-300 text-white placeholder-gray-400">
                         </div>
                         <div>
-                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition-all duration-300">
+                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-pink-500 focus:ring-2 focus:ring-pink-200/20 outline-none transition-all duration-300 text-white placeholder-gray-400">
                         </div>
                         <div>
-                            <textarea rows="5" placeholder="Your Message" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition-all duration-300 resize-none"></textarea>
+                            <textarea rows="5" placeholder="Your Message" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-pink-500 focus:ring-2 focus:ring-pink-200/20 outline-none transition-all duration-300 resize-none text-white placeholder-gray-400"></textarea>
                         </div>
-                        <button type="submit" class="btn-modern w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                        <button type="submit" class="w-full btn-neon text-white py-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                             Send Message
                         </button>
                     </form>
@@ -529,26 +632,26 @@
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-900 text-white py-16">
+    <footer class="bg-black/30 text-white py-16 backdrop-blur-md">
         <div class="container mx-auto px-6">
             <div class="grid md:grid-cols-4 gap-8 mb-8">
                 <div>
-                    <h3 class="font-playfair text-2xl font-bold mb-4">DOMINE</h3>
-                    <p class="text-gray-400 mb-4">Unique fashion inspired clothing that blends art and style.</p>
+                    <h3 class="font-space text-3xl font-bold mb-4 animate-text-glow">DOMINE</h3>
+                    <p class="text-gray-400 mb-4">Unique fashion inspired clothing that blends art, technology, and style.</p>
                     <div class="flex space-x-4">
-                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                        <a href="#" class="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform animate-pulse-glow">
                             <i class="fab fa-facebook-f"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                        <a href="#" class="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform animate-pulse-glow">
                             <i class="fab fa-instagram"></i>
                         </a>
-                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                        <a href="#" class="w-10 h-10 bg-gradient-to-r from-pink-500 to-purple-600 rounded-full flex items-center justify-center hover:scale-110 transition-transform animate-pulse-glow">
                             <i class="fab fa-twitter"></i>
                         </a>
                     </div>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <h4 class="font-semibold mb-4 text-white">Quick Links</h4>
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
                         <li><a href="#collection" class="hover:text-white transition-colors">Collection</a></li>
@@ -557,7 +660,7 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Categories</h4>
+                    <h4 class="font-semibold mb-4 text-white">Categories</h4>
                     <ul class="space-y-2 text-gray-400">
                         <li><a href="#" class="hover:text-white transition-colors">Graphic Tees</a></li>
                         <li><a href="#" class="hover:text-white transition-colors">Minimal Design</a></li>
@@ -566,85 +669,151 @@
                     </ul>
                 </div>
                 <div>
-                    <h4 class="font-semibold mb-4">Newsletter</h4>
+                    <h4 class="font-semibold mb-4 text-white">Newsletter</h4>
                     <p class="text-gray-400 mb-4">Subscribe for updates and exclusive offers</p>
                     <div class="flex">
-                        <input type="email" placeholder="Your email" class="flex-1 px-4 py-2 rounded-l-lg bg-gray-800 border border-gray-700 focus:border-red-500 outline-none">
-                        <button class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-r-lg transition-colors">
+                        <input type="email" placeholder="Your email" class="flex-1 px-4 py-2 rounded-l-lg bg-white/10 border border-white/20 focus:border-pink-500 outline-none text-white placeholder-gray-400">
+                        <button class="bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 px-4 py-2 rounded-r-lg transition-colors">
                             <i class="fas fa-paper-plane"></i>
                         </button>
                     </div>
                 </div>
             </div>
-            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+            <div class="border-t border-white/20 pt-8 text-center text-gray-400">
                 <p>&copy; 2025 DOMINE. All rights reserved.</p>
             </div>
         </div>
     </footer>
 
     <!-- Shopping Cart Sidebar -->
-    <div id="cart-sidebar" class="cart-sidebar fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50">
+    <div id="cart-sidebar" class="cart-sidebar fixed top-0 right-0 h-full w-full max-w-md glass-dark shadow-2xl z-50">
         <div class="flex flex-col h-full">
-            <div class="flex justify-between items-center p-6 border-b">
-                <h3 class="text-2xl font-bold">Shopping Cart</h3>
-                <button id="cart-close" class="p-2 text-gray-600 hover:text-red-500 transition-colors">
+            <div class="flex justify-between items-center p-6 border-b border-white/20">
+                <h3 class="text-2xl font-bold text-white">Shopping Cart</h3>
+                <button id="cart-close" class="p-2 text-white/60 hover:text-white transition-colors">
                     <i class="fas fa-times text-xl"></i>
                 </button>
             </div>
             <div id="cart-items" class="flex-1 overflow-y-auto p-6">
-                <div id="empty-cart" class="text-center text-gray-500 mt-20">
-                    <i class="fas fa-shopping-bag text-6xl mb-4 text-gray-300"></i>
+                <div id="empty-cart" class="text-center text-gray-400 mt-20">
+                    <i class="fas fa-shopping-bag text-6xl mb-4 text-gray-500"></i>
                     <p class="text-lg">Your cart is empty</p>
                     <p class="text-sm">Add some products to get started</p>
                 </div>
             </div>
-            <div class="border-t p-6">
+            <div class="border-t border-white/20 p-6">
                 <div class="flex justify-between items-center mb-4">
-                    <span class="text-lg font-semibold">Total:</span>
-                    <span id="cart-total" class="text-2xl font-bold text-red-500">₹0.00</span>
+                    <span class="text-lg font-semibold text-white">Total:</span>
+                    <span id="cart-total" class="text-2xl font-bold bg-gradient-to-r from-pink-400 to-purple-600 bg-clip-text text-transparent">₹0.00</span>
                 </div>
-                <button id="checkout-btn" class="w-full btn-modern bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                <button id="checkout-btn" class="w-full btn-neon text-white py-4 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
                     Proceed to Checkout
                 </button>
             </div>
         </div>
     </div>
 
-    <!-- Checkout Modal -->
-    <div id="checkout-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 hidden">
-        <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md mx-4 transform scale-95 transition-transform duration-300">
+    <!-- Enhanced Checkout Modal -->
+    <div id="checkout-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+        <div class="glass rounded-2xl shadow-2xl p-8 w-full max-w-lg mx-4 transform scale-95 transition-transform duration-300">
             <div class="flex justify-between items-center mb-6">
-                <h3 class="text-2xl font-bold">Payment Options</h3>
-                <button id="checkout-close" class="p-2 text-gray-600 hover:text-red-500 transition-colors">
+                <h3 class="text-2xl font-bold text-white">Complete Your Order</h3>
+                <button id="checkout-close" class="p-2 text-white/60 hover:text-white transition-colors">
                     <i class="fas fa-times text-xl"></i>
                 </button>
             </div>
+            
+            <!-- Customer Details Form -->
+            <form id="customer-form" class="space-y-4 mb-6">
+                <div>
+                    <input type="text" id="customer-name" placeholder="Full Name" required class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-pink-500 focus:ring-2 focus:ring-pink-200/20 outline-none transition-all duration-300 text-white placeholder-gray-400">
+                </div>
+                <div>
+                    <input type="email" id="customer-email" placeholder="Email Address" required class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-pink-500 focus:ring-2 focus:ring-pink-200/20 outline-none transition-all duration-300 text-white placeholder-gray-400">
+                </div>
+                <div>
+                    <input type="tel" id="customer-phone" placeholder="Phone Number" required class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-pink-500 focus:ring-2 focus:ring-pink-200/20 outline-none transition-all duration-300 text-white placeholder-gray-400">
+                </div>
+                <div>
+                    <textarea id="customer-address" placeholder="Delivery Address" required rows="3" class="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 focus:border-pink-500 focus:ring-2 focus:ring-pink-200/20 outline-none transition-all duration-300 resize-none text-white placeholder-gray-400"></textarea>
+                </div>
+            </form>
+
+            <!-- Payment Options -->
             <div class="space-y-4">
-                <div class="border-2 border-gray-200 rounded-lg p-4 hover:border-red-500 transition-colors cursor-pointer">
-                    <h4 class="font-semibold mb-2">UPI Payment</h4>
+                <div class="border-2 border-white/20 rounded-lg p-4 hover:border-pink-500 transition-colors cursor-pointer glass">
+                    <h4 class="font-semibold mb-2 text-white">UPI Payment</h4>
                     <div class="text-center">
-                        <img src="https://placehold.co/200x200/e2e8f0/333?text=QR+CODE" alt="QR Code" class="mx-auto rounded-lg mb-2">
-                        <p class="text-sm text-gray-600">Scan with any UPI app</p>
+                        <div class="w-48 h-48 mx-auto bg-white rounded-lg mb-2 flex items-center justify-center">
+                            <div class="text-center">
+                                <i class="fas fa-qrcode text-6xl text-gray-800 mb-2"></i>
+                                <p class="text-sm text-gray-600">QR Code</p>
+                            </div>
+                        </div>
+                        <p class="text-sm text-gray-300">Scan with any UPI app</p>
                     </div>
                 </div>
-                <div class="border-2 border-gray-200 rounded-lg p-4 hover:border-red-500 transition-colors">
-                    <h4 class="font-semibold mb-2">UPI ID</h4>
-                    <div class="bg-gray-100 p-3 rounded-lg font-mono text-center">
+                <div class="border-2 border-white/20 rounded-lg p-4 hover:border-pink-500 transition-colors glass">
+                    <h4 class="font-semibold mb-2 text-white">UPI ID</h4>
+                    <div class="bg-white/10 p-3 rounded-lg font-mono text-center text-white">
                         dsdcelknd@okhdfcbank
                     </div>
-                    <button onclick="copyUPI()" class="w-full mt-2 text-red-500 hover:text-red-600 font-medium">
+                    <button onclick="copyUPI()" class="w-full mt-2 text-pink-400 hover:text-pink-300 font-medium">
                         Copy UPI ID
                     </button>
                 </div>
-                <button id="razorpay-btn" class="w-full btn-modern bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-semibold transition-all duration-300">
+                <button id="razorpay-btn" class="w-full bg-gradient-to-r from-blue-500 to-blue-600 hover:from-blue-600 hover:to-blue-700 text-white py-4 rounded-lg font-semibold transition-all duration-300 shadow-lg">
                     Pay with Razorpay
                 </button>
             </div>
         </div>
     </div>
 
+    <!-- Payment Success Modal -->
+    <div id="payment-success-modal" class="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+        <div class="glass rounded-2xl shadow-2xl p-8 w-full max-w-md mx-4 text-center">
+            <div class="success-checkmark mb-6">
+                <div class="w-20 h-20 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center mx-auto animate-pulse-glow">
+                    <i class="fas fa-check text-white text-3xl"></i>
+                </div>
+            </div>
+            <h3 class="text-2xl font-bold text-white mb-4">Payment Successful!</h3>
+            <p class="text-gray-300 mb-6">Thank you for your order. A confirmation email has been sent to your email address.</p>
+            <div class="space-y-3 text-left bg-white/10 rounded-lg p-4 mb-6">
+                <div class="flex justify-between">
+                    <span class="text-gray-300">Order ID:</span>
+                    <span id="order-id" class="text-white font-mono"></span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-300">Amount:</span>
+                    <span id="order-amount" class="text-white font-semibold"></span>
+                </div>
+                <div class="flex justify-between">
+                    <span class="text-gray-300">Status:</span>
+                    <span class="text-green-400 font-semibold">Confirmed</span>
+                </div>
+            </div>
+            <button id="close-success-modal" class="btn-neon text-white px-8 py-3 rounded-lg font-semibold">
+                Continue Shopping
+            </button>
+        </div>
+    </div>
+
+    <!-- Email Verification Card -->
+    <div id="email-verification" class="fixed bottom-6 right-6 verification-card rounded-xl p-4 max-w-sm hidden z-40">
+        <div class="flex items-start space-x-3">
+            <div class="w-8 h-8 bg-gradient-to-r from-green-400 to-emerald-500 rounded-full flex items-center justify-center flex-shrink-0">
+                <i class="fas fa-envelope text-white text-sm"></i>
+            </div>
+            <div>
+                <h4 class="font-semibold text-white text-sm">Email Sent!</h4>
+                <p class="text-gray-300 text-xs">Order confirmation sent to your email</p>
+            </div>
+        </div>
+    </div>
+
     <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-6 right-6 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+    <div id="toast" class="fixed bottom-6 left-6 bg-gradient-to-r from-green-500 to-emerald-600 text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50">
         <div class="flex items-center space-x-2">
             <i class="fas fa-check-circle"></i>
             <span id="toast-message">Success!</span>
@@ -652,15 +821,15 @@
     </div>
 
     <!-- Scroll to Top Button -->
-    <button id="scroll-top" class="fixed bottom-6 left-6 w-12 h-12 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-lg opacity-0 invisible transition-all duration-300 z-40">
+    <button id="scroll-top" class="fixed bottom-6 left-6 w-12 h-12 bg-gradient-to-r from-pink-500 to-purple-600 hover:from-pink-600 hover:to-purple-700 text-white rounded-full shadow-lg opacity-0 invisible transition-all duration-300 z-40 animate-pulse-glow">
         <i class="fas fa-arrow-up"></i>
     </button>
 
     <!-- Loading Overlay -->
-    <div id="loading" class="fixed inset-0 bg-white flex items-center justify-center z-50">
+    <div id="loading" class="fixed inset-0 bg-gradient-to-br from-gray-900 to-black flex items-center justify-center z-50">
         <div class="text-center">
-            <div class="loading-spinner mx-auto mb-4"></div>
-            <p class="text-gray-600">Loading DOMINE...</p>
+            <div class="w-16 h-16 border-4 border-white/20 border-t-pink-500 rounded-full animate-spin mx-auto mb-4"></div>
+            <p class="text-white font-space text-lg">Loading DOMINE...</p>
         </div>
     </div>
 
@@ -686,7 +855,7 @@
             // Hide loading screen
             setTimeout(() => {
                 document.getElementById('loading').style.display = 'none';
-            }, 1000);
+            }, 1500);
         }
 
         // Generate sample products
@@ -695,7 +864,8 @@
             const designs = [
                 'Abstract Art', 'Geometric Pattern', 'Nature Inspired', 'Urban Style',
                 'Vintage Design', 'Modern Art', 'Typography', 'Illustration',
-                'Minimalist', 'Bold Graphics', 'Artistic Print', 'Creative Design'
+                'Minimalist', 'Bold Graphics', 'Artistic Print', 'Creative Design',
+                'Neon Dreams', 'Digital Art', 'Street Style', 'Retro Vibes'
             ];
 
             for (let i = 1; i <= 52; i++) {
@@ -743,26 +913,27 @@
 
             document.getElementById('checkout-close').addEventListener('click', closeCheckoutModal);
 
-            document.getElementById('razorpay-btn').addEventListener('click', () => {
-                showToast('Redirecting to Razorpay...', 'info');
-                setTimeout(() => {
-                    showToast('Payment simulation completed!', 'success');
-                    cart = [];
-                    updateCartUI();
-                    closeCheckoutModal();
-                }, 2000);
+            // Razorpay payment
+            document.getElementById('razorpay-btn').addEventListener('click', processRazorpayPayment);
+
+            // Payment success modal
+            document.getElementById('close-success-modal').addEventListener('click', () => {
+                document.getElementById('payment-success-modal').classList.add('hidden');
+                cart = [];
+                updateCartUI();
+                closeCheckoutModal();
             });
 
             // Filter buttons
             document.querySelectorAll('.filter-btn').forEach(btn => {
                 btn.addEventListener('click', (e) => {
                     document.querySelectorAll('.filter-btn').forEach(b => {
-                        b.classList.remove('active', 'bg-red-500', 'text-white');
-                        b.classList.add('bg-white', 'text-gray-700');
+                        b.classList.remove('active', 'bg-gradient-to-r', 'from-pink-500', 'to-purple-600');
+                        b.classList.add('glass');
                     });
                     
-                    e.target.classList.add('active', 'bg-red-500', 'text-white');
-                    e.target.classList.remove('bg-white', 'text-gray-700');
+                    e.target.classList.add('active', 'bg-gradient-to-r', 'from-pink-500', 'to-purple-600');
+                    e.target.classList.remove('glass');
                     
                     currentFilter = e.target.dataset.filter;
                     productsLoaded = 12;
@@ -834,26 +1005,27 @@
             const productsToShow = filteredProducts.slice(0, productsLoaded);
             
             grid.innerHTML = productsToShow.map(product => `
-                <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 animate-on-scroll">
+                <div class="product-card-creative rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 animate-on-scroll">
                     <div class="relative overflow-hidden">
                         <img src="${product.image}" alt="${product.name}" class="product-image w-full h-64 object-cover">
                         <div class="absolute top-4 right-4">
-                            <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                            <span class="bg-gradient-to-r from-pink-500 to-purple-600 text-white px-3 py-1 rounded-full text-xs font-medium animate-pulse-glow">
                                 ${product.category.charAt(0).toUpperCase() + product.category.slice(1)}
                             </span>
                         </div>
+                        <div class="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent opacity-0 hover:opacity-100 transition-opacity duration-300"></div>
                     </div>
                     <div class="p-6">
-                        <h3 class="font-semibold text-lg mb-2 text-gray-900">${product.name}</h3>
+                        <h3 class="font-semibold text-lg mb-2 text-white">${product.name}</h3>
                         <div class="flex items-center mb-3">
                             <div class="flex text-yellow-400 text-sm">
                                 ${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}
                             </div>
-                            <span class="text-gray-500 text-sm ml-2">(${product.reviews})</span>
+                            <span class="text-gray-400 text-sm ml-2">(${product.reviews})</span>
                         </div>
                         <div class="flex items-center justify-between">
-                            <span class="text-2xl font-bold text-red-500">₹${product.price}</span>
-                            <button onclick="addToCart(${product.id})" class="btn-modern bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-2 rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                            <span class="text-2xl font-bold bg-gradient-to-r from-pink-400 to-purple-600 bg-clip-text text-transparent">₹${product.price}</span>
+                            <button onclick="addToCart(${product.id})" class="btn-neon text-white px-6 py-2 rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                                 Add to Cart
                             </button>
                         </div>
@@ -928,22 +1100,22 @@
                 cartItems.innerHTML = `
                     <div class="space-y-4">
                         ${cart.map(item => `
-                            <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+                            <div class="flex items-center space-x-4 p-4 glass rounded-lg">
                                 <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg">
                                 <div class="flex-1">
-                                    <h4 class="font-medium text-gray-900">${item.name}</h4>
-                                    <p class="text-red-500 font-semibold">₹${item.price}</p>
+                                    <h4 class="font-medium text-white">${item.name}</h4>
+                                    <p class="bg-gradient-to-r from-pink-400 to-purple-600 bg-clip-text text-transparent font-semibold">₹${item.price}</p>
                                 </div>
                                 <div class="flex items-center space-x-2">
-                                    <button onclick="updateQuantity(${item.id}, -1)" class="w-8 h-8 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center transition-colors">
+                                    <button onclick="updateQuantity(${item.id}, -1)" class="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors text-white">
                                         <i class="fas fa-minus text-xs"></i>
                                     </button>
-                                    <span class="w-8 text-center font-medium">${item.quantity}</span>
-                                    <button onclick="updateQuantity(${item.id}, 1)" class="w-8 h-8 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center transition-colors">
+                                    <span class="w-8 text-center font-medium text-white">${item.quantity}</span>
+                                    <button onclick="updateQuantity(${item.id}, 1)" class="w-8 h-8 bg-white/20 hover:bg-white/30 rounded-full flex items-center justify-center transition-colors text-white">
                                         <i class="fas fa-plus text-xs"></i>
                                     </button>
                                 </div>
-                                <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700 transition-colors">
+                                <button onclick="removeFromCart(${item.id})" class="text-red-400 hover:text-red-300 transition-colors">
                                     <i class="fas fa-trash"></i>
                                 </button>
                             </div>
@@ -955,6 +1127,123 @@
             // Update total
             const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
             cartTotal.textContent = `₹${total.toFixed(2)}`;
+        }
+
+        // Enhanced Payment Processing
+        function processRazorpayPayment() {
+            const customerName = document.getElementById('customer-name').value;
+            const customerEmail = document.getElementById('customer-email').value;
+            const customerPhone = document.getElementById('customer-phone').value;
+            const customerAddress = document.getElementById('customer-address').value;
+
+            // Validate form
+            if (!customerName || !customerEmail || !customerPhone || !customerAddress) {
+                showToast('Please fill in all customer details', 'error');
+                return;
+            }
+
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            
+            // Simulate Razorpay payment
+            const options = {
+                key: 'rzp_test_1234567890', // Demo key
+                amount: total * 100, // Amount in paise
+                currency: 'INR',
+                name: 'DOMINE',
+                description: 'Fashion Purchase',
+                image: 'https://via.placeholder.com/100x100/ff0080/ffffff?text=D',
+                handler: function (response) {
+                    // Payment successful
+                    processPaymentSuccess(response, {
+                        name: customerName,
+                        email: customerEmail,
+                        phone: customerPhone,
+                        address: customerAddress,
+                        total: total
+                    });
+                },
+                prefill: {
+                    name: customerName,
+                    email: customerEmail,
+                    contact: customerPhone
+                },
+                theme: {
+                    color: '#ff0080'
+                }
+            };
+
+            // For demo purposes, simulate successful payment
+            setTimeout(() => {
+                const mockResponse = {
+                    razorpay_payment_id: 'pay_' + Math.random().toString(36).substr(2, 9),
+                    razorpay_order_id: 'order_' + Math.random().toString(36).substr(2, 9),
+                    razorpay_signature: 'signature_' + Math.random().toString(36).substr(2, 9)
+                };
+                
+                processPaymentSuccess(mockResponse, {
+                    name: customerName,
+                    email: customerEmail,
+                    phone: customerPhone,
+                    address: customerAddress,
+                    total: total
+                });
+            }, 2000);
+
+            showToast('Processing payment...', 'info');
+        }
+
+        function processPaymentSuccess(paymentResponse, customerData) {
+            // Generate order ID
+            const orderId = 'DOM' + Date.now().toString().slice(-8);
+            
+            // Close checkout modal
+            closeCheckoutModal();
+            
+            // Show success modal
+            document.getElementById('order-id').textContent = orderId;
+            document.getElementById('order-amount').textContent = `₹${customerData.total.toFixed(2)}`;
+            document.getElementById('payment-success-modal').classList.remove('hidden');
+            
+            // Send confirmation email (simulated)
+            sendConfirmationEmail(customerData, orderId, paymentResponse);
+            
+            // Show email verification notification
+            showEmailVerification();
+            
+            showToast('Payment successful! Order confirmed.', 'success');
+        }
+
+        function sendConfirmationEmail(customerData, orderId, paymentResponse) {
+            // Simulate email sending
+            const emailData = {
+                to: customerData.email,
+                subject: `Order Confirmation - ${orderId}`,
+                orderDetails: {
+                    orderId: orderId,
+                    customerName: customerData.name,
+                    items: cart,
+                    total: customerData.total,
+                    address: customerData.address,
+                    paymentId: paymentResponse.razorpay_payment_id
+                }
+            };
+
+            // In a real application, this would make an API call to your backend
+            console.log('Sending confirmation email:', emailData);
+            
+            // Simulate email API call
+            setTimeout(() => {
+                console.log('Confirmation email sent successfully to:', customerData.email);
+            }, 1000);
+        }
+
+        function showEmailVerification() {
+            const emailVerification = document.getElementById('email-verification');
+            emailVerification.classList.remove('hidden');
+            
+            setTimeout(() => {
+                emailVerification.classList.add('hidden');
+            }, 5000);
         }
 
         // Utility functions
@@ -981,20 +1270,55 @@
             toastMessage.textContent = message;
             
             // Set color based on type
-            toast.className = `fixed bottom-6 right-6 px-6 py-3 rounded-lg shadow-lg transform transition-transform duration-300 z-50 ${
-                type === 'success' ? 'bg-green-500' : 
-                type === 'error' ? 'bg-red-500' : 
-                type === 'info' ? 'bg-blue-500' : 'bg-gray-500'
-            } text-white`;
+            const colors = {
+                success: 'from-green-500 to-emerald-600',
+                error: 'from-red-500 to-red-600',
+                info: 'from-blue-500 to-blue-600',
+                warning: 'from-yellow-500 to-orange-600'
+            };
+            
+            toast.className = `fixed bottom-6 left-6 bg-gradient-to-r ${colors[type] || colors.success} text-white px-6 py-3 rounded-lg shadow-lg transform transition-transform duration-300 z-50`;
             
             // Show toast
             toast.style.transform = 'translateX(0)';
             
             // Hide after 3 seconds
             setTimeout(() => {
-                toast.style.transform = 'translateX(100%)';
+                toast.style.transform = 'translateX(-100%)';
             }, 3000);
         }
+
+        // Mobile menu functionality
+        const mobileMenuToggle = document.getElementById('mobile-menu-toggle');
+        const mobileMenu = document.getElementById('mobile-menu');
+        const mobileMenuClose = document.getElementById('mobile-menu-close');
+
+        mobileMenuToggle.addEventListener('click', () => {
+            mobileMenu.style.transform = 'translateX(0)';
+        });
+
+        mobileMenuClose.addEventListener('click', () => {
+            mobileMenu.style.transform = 'translateX(100%)';
+        });
+
+        // Cart sidebar functionality
+        const cartToggle = document.getElementById('cart-toggle');
+        const cartSidebar = document.getElementById('cart-sidebar');
+        const cartClose = document.getElementById('cart-close');
+
+        cartToggle.addEventListener('click', () => {
+            cartSidebar.style.transform = 'translateX(0)';
+        });
+
+        cartClose.addEventListener('click', () => {
+            cartSidebar.style.transform = 'translateX(100%)';
+        });
+
+        // Initialize mobile menu and cart sidebar positions
+        document.addEventListener('DOMContentLoaded', () => {
+            mobileMenu.style.transform = 'translateX(100%)';
+            cartSidebar.style.transform = 'translateX(100%)';
+        });
     </script>
 </body>
 </html>
