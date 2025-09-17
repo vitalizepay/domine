@@ -5,394 +5,995 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>DOMINE - Unique Fashion Inspired Clothing</title>
     <script src="https://cdn.tailwindcss.com"></script>
-    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700&display=swap" rel="stylesheet">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&family=Playfair+Display:wght@400;500;600;700&display=swap" rel="stylesheet">
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.5.1/css/all.min.css">
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    fontFamily: {
+                        'inter': ['Inter', 'sans-serif'],
+                        'playfair': ['Playfair Display', 'serif'],
+                    },
+                    colors: {
+                        primary: {
+                            50: '#fef2f2',
+                            100: '#fee2e2',
+                            500: '#ef4444',
+                            600: '#dc2626',
+                            700: '#b91c1c',
+                        },
+                        dark: {
+                            800: '#1f2937',
+                            900: '#111827',
+                        }
+                    },
+                    animation: {
+                        'fade-in-up': 'fadeInUp 0.8s ease-out forwards',
+                        'fade-in-left': 'fadeInLeft 0.8s ease-out forwards',
+                        'fade-in-right': 'fadeInRight 0.8s ease-out forwards',
+                        'scale-in': 'scaleIn 0.6s ease-out forwards',
+                        'float': 'float 6s ease-in-out infinite',
+                    }
+                }
+            }
+        }
+    </script>
     <style>
         /* Custom Styles & Animations */
         :root {
-            --primary-color: #ff6b6b;
-            --primary-hover: #ff5252;
+            --primary-gradient: linear-gradient(135deg, #ef4444 0%, #dc2626 100%);
+            --glass-bg: rgba(255, 255, 255, 0.1);
+            --glass-border: rgba(255, 255, 255, 0.2);
         }
-        html {
+
+        * {
             scroll-behavior: smooth;
         }
+
         body {
             font-family: 'Inter', sans-serif;
-            background-color: #f9f9f9;
-            color: #333;
+            background: linear-gradient(135deg, #f8fafc 0%, #e2e8f0 100%);
             overflow-x: hidden;
         }
-        .logo {
-            font-weight: 700;
-            font-size: 1.75rem;
-            letter-spacing: 1px;
-            color: #000; /* Changed to black for visibility */
+
+        /* Glass morphism effect */
+        .glass {
+            background: var(--glass-bg);
+            backdrop-filter: blur(20px);
+            border: 1px solid var(--glass-border);
         }
-        .nav-link {
-            transition: color 0.3s ease;
+
+        /* Custom animations */
+        @keyframes fadeInUp {
+            from {
+                opacity: 0;
+                transform: translateY(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateY(0);
+            }
+        }
+
+        @keyframes fadeInLeft {
+            from {
+                opacity: 0;
+                transform: translateX(-30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes fadeInRight {
+            from {
+                opacity: 0;
+                transform: translateX(30px);
+            }
+            to {
+                opacity: 1;
+                transform: translateX(0);
+            }
+        }
+
+        @keyframes scaleIn {
+            from {
+                opacity: 0;
+                transform: scale(0.9);
+            }
+            to {
+                opacity: 1;
+                transform: scale(1);
+            }
+        }
+
+        @keyframes float {
+            0%, 100% { transform: translateY(0px); }
+            50% { transform: translateY(-20px); }
+        }
+
+        /* Modern button styles */
+        .btn-modern {
             position: relative;
+            overflow: hidden;
+            transition: all 0.3s ease;
         }
+
+        .btn-modern::before {
+            content: '';
+            position: absolute;
+            top: 0;
+            left: -100%;
+            width: 100%;
+            height: 100%;
+            background: linear-gradient(90deg, transparent, rgba(255,255,255,0.2), transparent);
+            transition: left 0.5s;
+        }
+
+        .btn-modern:hover::before {
+            left: 100%;
+        }
+
+        /* Product card hover effects */
+        .product-card {
+            transition: all 0.4s cubic-bezier(0.175, 0.885, 0.32, 1.275);
+        }
+
+        .product-card:hover {
+            transform: translateY(-15px) scale(1.02);
+            box-shadow: 0 25px 50px rgba(0, 0, 0, 0.15);
+        }
+
+        .product-card:hover .product-image {
+            transform: scale(1.1);
+        }
+
+        .product-image {
+            transition: transform 0.4s ease;
+        }
+
+        /* Navigation styles */
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
         .nav-link::after {
             content: '';
             position: absolute;
+            bottom: -5px;
+            left: 50%;
             width: 0;
             height: 2px;
-            bottom: -5px;
-            left: 0;
-            background-color: var(--primary-color);
-            transition: width 0.3s;
+            background: var(--primary-gradient);
+            transition: all 0.3s ease;
+            transform: translateX(-50%);
         }
-        .nav-link:hover {
-            color: var(--primary-color);
-        }
+
         .nav-link:hover::after {
             width: 100%;
         }
-        .product-card {
-            transition: transform 0.3s ease, box-shadow 0.3s ease;
+
+        /* Hero section styles */
+        .hero-bg {
+            background: linear-gradient(135deg, rgba(17, 24, 39, 0.8) 0%, rgba(31, 41, 55, 0.6) 100%),
+                        url('https://images.unsplash.com/photo-1441986300917-64674bd600d8?q=80&w=2070&auto=format&fit=crop') center/cover;
         }
-        .product-card:hover {
-            transform: translateY(-10px);
-            box-shadow: 0 15px 30px rgba(0, 0, 0, 0.15);
-        }
-        .btn-primary {
-            background-color: var(--primary-color);
-            transition: background-color 0.3s ease, transform 0.2s ease;
-        }
-        .btn-primary:hover {
-            background-color: var(--primary-hover);
-            transform: scale(1.05);
-        }
-        .cart-sidebar, .checkout-modal {
-            transition: transform 0.3s ease-in-out;
-        }
-        .cart-item-enter {
-            animation: slideIn 0.5s forwards;
-        }
-        .scroll-top {
-            position: fixed;
-            bottom: 30px;
-            right: 30px;
-            width: 50px;
-            height: 50px;
-            background-color: var(--primary-color);
+
+        /* Scroll animations */
+        .animate-on-scroll {
             opacity: 0;
-            visibility: hidden;
-            transition: all 0.4s;
-            z-index: 100;
+            transform: translateY(30px);
+            transition: all 0.8s ease-out;
         }
-        .scroll-top.active {
-            opacity: 1;
-            visibility: visible;
-        }
-        .scroll-top:hover {
-             background-color: var(--primary-hover);
-             transform: translateY(-5px);
-        }
-        /* New Animations */
-        .fade-in {
-            opacity: 0;
-            transform: translateY(20px);
-            transition: opacity 0.6s ease-out, transform 0.6s ease-out;
-        }
-        .fade-in.visible {
+
+        .animate-on-scroll.animated {
             opacity: 1;
             transform: translateY(0);
         }
-        @keyframes slideIn {
-            from { opacity: 0; transform: translateX(100%); }
-            to { opacity: 1; transform: translateX(0); }
+
+        /* Custom scrollbar */
+        ::-webkit-scrollbar {
+            width: 8px;
         }
-        @keyframes pulse {
-            from { box-shadow: 0 0 0 0 rgba(255, 107, 107, 0.4); }
-            to { box-shadow: 0 0 0 15px rgba(255, 107, 107, 0); }
+
+        ::-webkit-scrollbar-track {
+            background: #f1f5f9;
+        }
+
+        ::-webkit-scrollbar-thumb {
+            background: var(--primary-gradient);
+            border-radius: 4px;
+        }
+
+        ::-webkit-scrollbar-thumb:hover {
+            background: #dc2626;
+        }
+
+        /* Mobile menu */
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .mobile-menu.active {
+            transform: translateX(0);
+        }
+
+        /* Cart sidebar */
+        .cart-sidebar {
+            transform: translateX(100%);
+            transition: transform 0.3s ease-in-out;
+        }
+
+        .cart-sidebar.active {
+            transform: translateX(0);
+        }
+
+        /* Loading animation */
+        .loading-spinner {
+            border: 3px solid #f3f4f6;
+            border-top: 3px solid #ef4444;
+            border-radius: 50%;
+            width: 24px;
+            height: 24px;
+            animation: spin 1s linear infinite;
+        }
+
+        @keyframes spin {
+            0% { transform: rotate(0deg); }
+            100% { transform: rotate(360deg); }
         }
     </style>
 </head>
-<body class="bg-gray-50">
+<body class="font-inter">
 
     <!-- Header -->
-    <header class="bg-white shadow-md sticky top-0 z-40">
-        <nav class="container mx-auto px-6 py-4 flex justify-between items-center">
-            <a href="#" class="logo">DOMINE</a>
-            <div class="hidden md:flex items-center space-x-8">
-                <a href="#home" class="nav-link text-gray-600">Home</a>
-                <a href="#tshirts" class="nav-link text-gray-600">Shop</a>
-                <a href="#about" class="nav-link text-gray-600">About</a>
-                <a href="#contact" class="nav-link text-gray-600">Contact</a>
-            </div>
-            <div class="flex items-center space-x-5">
-                <button class="text-gray-600 hover:text-[var(--primary-color)]"><i class="fas fa-search"></i></button>
-                <button class="text-gray-600 hover:text-[var(--primary-color)]"><i class="fas fa-user"></i></button>
-                <button id="cart-button" class="relative text-gray-600 hover:text-[var(--primary-color)]">
-                    <i class="fas fa-shopping-cart text-xl"></i>
-                    <span id="cart-count" class="absolute -top-2 -right-2 bg-[var(--primary-color)] text-white text-xs rounded-full h-5 w-5 flex items-center justify-center">0</span>
-                </button>
+    <header class="fixed top-0 w-full z-50 glass backdrop-blur-md">
+        <nav class="container mx-auto px-6 py-4">
+            <div class="flex justify-between items-center">
+                <!-- Logo -->
+                <a href="#" class="font-playfair text-3xl font-bold text-gray-900 tracking-wider">
+                    DOMINE
+                </a>
+
+                <!-- Desktop Navigation -->
+                <div class="hidden lg:flex items-center space-x-8">
+                    <a href="#home" class="nav-link text-gray-700 hover:text-red-500 font-medium">Home</a>
+                    <a href="#collection" class="nav-link text-gray-700 hover:text-red-500 font-medium">Collection</a>
+                    <a href="#about" class="nav-link text-gray-700 hover:text-red-500 font-medium">About</a>
+                    <a href="#contact" class="nav-link text-gray-700 hover:text-red-500 font-medium">Contact</a>
+                </div>
+
+                <!-- Action Buttons -->
+                <div class="flex items-center space-x-4">
+                    <button class="p-2 text-gray-700 hover:text-red-500 transition-colors">
+                        <i class="fas fa-search text-lg"></i>
+                    </button>
+                    <button class="p-2 text-gray-700 hover:text-red-500 transition-colors">
+                        <i class="fas fa-user text-lg"></i>
+                    </button>
+                    <button id="cart-toggle" class="relative p-2 text-gray-700 hover:text-red-500 transition-colors">
+                        <i class="fas fa-shopping-bag text-lg"></i>
+                        <span id="cart-count" class="absolute -top-1 -right-1 bg-red-500 text-white text-xs rounded-full h-5 w-5 flex items-center justify-center font-medium">0</span>
+                    </button>
+                    <button id="mobile-menu-toggle" class="lg:hidden p-2 text-gray-700">
+                        <i class="fas fa-bars text-lg"></i>
+                    </button>
+                </div>
             </div>
         </nav>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu fixed top-0 right-0 h-full w-80 bg-white shadow-2xl lg:hidden z-50">
+            <div class="p-6">
+                <div class="flex justify-between items-center mb-8">
+                    <span class="font-playfair text-2xl font-bold text-gray-900">Menu</span>
+                    <button id="mobile-menu-close" class="p-2 text-gray-700">
+                        <i class="fas fa-times text-xl"></i>
+                    </button>
+                </div>
+                <nav class="space-y-6">
+                    <a href="#home" class="block text-lg text-gray-700 hover:text-red-500 transition-colors">Home</a>
+                    <a href="#collection" class="block text-lg text-gray-700 hover:text-red-500 transition-colors">Collection</a>
+                    <a href="#about" class="block text-lg text-gray-700 hover:text-red-500 transition-colors">About</a>
+                    <a href="#contact" class="block text-lg text-gray-700 hover:text-red-500 transition-colors">Contact</a>
+                </nav>
+            </div>
+        </div>
     </header>
 
     <!-- Hero Section -->
-    <section id="home" class="relative h-[80vh] bg-cover bg-center text-white" style="background-image: url('https://images.unsplash.com/photo-1618354691373-d851c5c3a990?q=80&w=1915&auto=format&fit=crop');">
-        <div class="absolute inset-0 bg-black bg-opacity-50"></div>
-        <div class="relative z-10 flex flex-col items-center justify-center h-full text-center px-6">
-            <h1 class="text-4xl md:text-6xl font-bold leading-tight animate-fade-in">Wear Your Imagination</h1>
-            <p class="mt-4 text-lg md:text-xl animate-fade-in" style="animation-delay: 0.3s;">Discover unique fashion inspired clothing that blends art and style.</p>
-            <a href="#tshirts" class="btn-primary mt-8 inline-block font-semibold py-3 px-8 rounded-lg shadow-lg animate-fade-in" style="animation-delay: 0.6s;">Shop Now</a>
-        </div>
-    </section>
+    <section id="home" class="hero-bg min-h-screen flex items-center justify-center text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-gradient-to-br from-black/60 via-black/40 to-transparent"></div>
+        
+        <!-- Floating elements -->
+        <div class="absolute top-20 left-10 w-20 h-20 bg-red-500/20 rounded-full animate-float"></div>
+        <div class="absolute bottom-32 right-16 w-16 h-16 bg-white/10 rounded-full animate-float" style="animation-delay: -2s;"></div>
+        <div class="absolute top-1/2 left-1/4 w-12 h-12 bg-red-400/30 rounded-full animate-float" style="animation-delay: -4s;"></div>
 
-    <!-- T-Shirts Section -->
-    <main id="tshirts" class="container mx-auto px-6 py-16">
-        <h2 class="text-3xl font-bold text-center text-gray-800 mb-10 fade-in">Our T-Shirt Collection</h2>
-        <div id="product-grid" class="grid grid-cols-1 sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-8">
-            <!-- Product cards will be injected here by JavaScript -->
-        </div>
-    </main>
-    
-    <!-- Promo Banner -->
-    <section class="bg-gradient-to-r from-[var(--primary-color)] to-[var(--primary-hover)] text-white text-center py-12 my-12 fade-in" style="animation: pulse 2s infinite alternate;">
-        <h2 class="text-3xl font-bold">Limited Time Offer!</h2>
-        <p class="mt-2">Get 20% off on all orders above ₹4,150. Use code <strong>DOMINE20</strong> at checkout.</p>
-        <a href="#tshirts" class="mt-6 inline-block bg-white text-[var(--primary-color)] font-bold py-2 px-6 rounded-lg">Shop Now</a>
-    </section>
-
-    <!-- About & Contact Section -->
-    <section id="about" class="container mx-auto px-6 py-16">
-        <div class="grid md:grid-cols-2 gap-12">
-            <div class="fade-in">
-                <h2 class="text-2xl font-bold mb-4 text-[var(--primary-color)]">About DOMINE</h2>
-                <p class="text-gray-600 leading-relaxed">DOMINE is a premium clothing brand that brings artistic designs to life through wearable fashion. We combine high-quality materials with stunning patterns to create clothing that stands out.</p>
-                <p class="text-gray-600 leading-relaxed mt-4">Our mission is to bridge the gap between art and fashion, allowing you to express your unique style through your wardrobe.</p>
+        <div class="relative z-10 text-center px-6 max-w-4xl mx-auto">
+            <h1 class="font-playfair text-5xl md:text-7xl font-bold leading-tight mb-6 animate-fade-in-up">
+                Wear Your
+                <span class="bg-gradient-to-r from-red-400 to-red-600 bg-clip-text text-transparent">
+                    Imagination
+                </span>
+            </h1>
+            <p class="text-xl md:text-2xl text-gray-200 mb-8 animate-fade-in-up" style="animation-delay: 0.2s;">
+                Discover unique fashion-inspired clothing that blends art and style
+            </p>
+            <div class="flex flex-col sm:flex-row gap-4 justify-center animate-fade-in-up" style="animation-delay: 0.4s;">
+                <a href="#collection" class="btn-modern bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-8 py-4 rounded-full font-semibold text-lg shadow-xl hover:shadow-2xl transform hover:scale-105 transition-all duration-300">
+                    Shop Collection
+                </a>
+                <a href="#about" class="btn-modern border-2 border-white text-white hover:bg-white hover:text-gray-900 px-8 py-4 rounded-full font-semibold text-lg transition-all duration-300">
+                    Learn More
+                </a>
             </div>
-            <div id="contact" class="fade-in">
-                <h2 class="text-2xl font-bold mb-4 text-[var(--primary-color)]">Contact Us</h2>
-                <p class="text-gray-600 mb-4">Have questions or need assistance? Reach out to our team!</p>
-                <div class="space-y-3 text-gray-700">
-                    <p><i class="fas fa-user w-6 text-[var(--primary-color)]"></i> Karthick</p>
-                    <p><i class="fas fa-envelope w-6 text-[var(--primary-color)]"></i> karthick@domine.in</p>
-                    <p><i class="fas fa-phone w-6 text-[var(--primary-color)]"></i> +91 97918 81884</p>
-                    <p><i class="fas fa-map-marker-alt w-6 text-[var(--primary-color)]"></i> Tirupur, Tamil Nadu</p>
+        </div>
+    </section>
+
+    <!-- Features Section -->
+    <section class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-3 gap-8">
+                <div class="text-center animate-on-scroll">
+                    <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-palette text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Artistic Designs</h3>
+                    <p class="text-gray-600">Unique patterns and designs that stand out from the crowd</p>
+                </div>
+                <div class="text-center animate-on-scroll" style="animation-delay: 0.2s;">
+                    <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-award text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Premium Quality</h3>
+                    <p class="text-gray-600">High-quality materials for comfort and durability</p>
+                </div>
+                <div class="text-center animate-on-scroll" style="animation-delay: 0.4s;">
+                    <div class="w-16 h-16 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center mx-auto mb-4">
+                        <i class="fas fa-shipping-fast text-white text-2xl"></i>
+                    </div>
+                    <h3 class="text-xl font-semibold mb-2">Fast Delivery</h3>
+                    <p class="text-gray-600">Quick and reliable shipping across India</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Collection Section -->
+    <section id="collection" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="font-playfair text-4xl md:text-5xl font-bold text-gray-900 mb-4">
+                    Our Collection
+                </h2>
+                <p class="text-xl text-gray-600 max-w-2xl mx-auto">
+                    Explore our carefully curated selection of artistic t-shirts
+                </p>
+            </div>
+
+            <!-- Filter Buttons -->
+            <div class="flex flex-wrap justify-center gap-4 mb-12 animate-on-scroll">
+                <button class="filter-btn active px-6 py-2 rounded-full bg-red-500 text-white font-medium transition-all duration-300" data-filter="all">
+                    All Designs
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-white text-gray-700 hover:bg-red-500 hover:text-white font-medium transition-all duration-300" data-filter="graphic">
+                    Graphic
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-white text-gray-700 hover:bg-red-500 hover:text-white font-medium transition-all duration-300" data-filter="minimal">
+                    Minimal
+                </button>
+                <button class="filter-btn px-6 py-2 rounded-full bg-white text-gray-700 hover:bg-red-500 hover:text-white font-medium transition-all duration-300" data-filter="artistic">
+                    Artistic
+                </button>
+            </div>
+
+            <!-- Products Grid -->
+            <div id="products-grid" class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
+                <!-- Products will be loaded here -->
+            </div>
+
+            <!-- Load More Button -->
+            <div class="text-center mt-12 animate-on-scroll">
+                <button id="load-more" class="btn-modern bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                    Load More Products
+                </button>
+            </div>
+        </div>
+    </section>
+
+    <!-- Promo Banner -->
+    <section class="py-16 bg-gradient-to-r from-red-500 to-red-600 text-white relative overflow-hidden">
+        <div class="absolute inset-0 bg-black/10"></div>
+        <div class="container mx-auto px-6 text-center relative z-10">
+            <div class="animate-on-scroll">
+                <h2 class="font-playfair text-3xl md:text-4xl font-bold mb-4">
+                    Limited Time Offer!
+                </h2>
+                <p class="text-xl mb-6">
+                    Get 20% off on all orders above ₹4,150. Use code <span class="font-bold bg-white/20 px-3 py-1 rounded-lg">DOMINE20</span>
+                </p>
+                <a href="#collection" class="btn-modern bg-white text-red-600 hover:bg-gray-100 px-8 py-3 rounded-full font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                    Shop Now
+                </a>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-white">
+        <div class="container mx-auto px-6">
+            <div class="grid lg:grid-cols-2 gap-16 items-center">
+                <div class="animate-on-scroll">
+                    <h2 class="font-playfair text-4xl font-bold text-gray-900 mb-6">
+                        About DOMINE
+                    </h2>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        DOMINE is a premium clothing brand that brings artistic designs to life through wearable fashion. We combine high-quality materials with stunning patterns to create clothing that stands out.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        Our mission is to bridge the gap between art and fashion, allowing you to express your unique style through your wardrobe.
+                    </p>
+                    <div class="grid grid-cols-2 gap-6">
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-red-500 mb-2">1000+</div>
+                            <div class="text-gray-600">Happy Customers</div>
+                        </div>
+                        <div class="text-center">
+                            <div class="text-3xl font-bold text-red-500 mb-2">50+</div>
+                            <div class="text-gray-600">Unique Designs</div>
+                        </div>
+                    </div>
+                </div>
+                <div class="animate-on-scroll" style="animation-delay: 0.2s;">
+                    <img src="https://images.unsplash.com/photo-1556905055-8f358a7a47b2?q=80&w=2070&auto=format&fit=crop" alt="About DOMINE" class="rounded-2xl shadow-2xl">
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-gray-50">
+        <div class="container mx-auto px-6">
+            <div class="text-center mb-16 animate-on-scroll">
+                <h2 class="font-playfair text-4xl font-bold text-gray-900 mb-4">
+                    Get In Touch
+                </h2>
+                <p class="text-xl text-gray-600">
+                    Have questions? We'd love to hear from you.
+                </p>
+            </div>
+            <div class="grid lg:grid-cols-2 gap-16">
+                <div class="animate-on-scroll">
+                    <div class="space-y-8">
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-user text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900">Contact Person</h3>
+                                <p class="text-gray-600">Karthick</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-envelope text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900">Email</h3>
+                                <p class="text-gray-600">karthick@domine.in</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-phone text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900">Phone</h3>
+                                <p class="text-gray-600">+91 97918 81884</p>
+                            </div>
+                        </div>
+                        <div class="flex items-center space-x-4">
+                            <div class="w-12 h-12 bg-gradient-to-r from-red-500 to-red-600 rounded-full flex items-center justify-center">
+                                <i class="fas fa-map-marker-alt text-white"></i>
+                            </div>
+                            <div>
+                                <h3 class="font-semibold text-gray-900">Location</h3>
+                                <p class="text-gray-600">Tirupur, Tamil Nadu</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="animate-on-scroll" style="animation-delay: 0.2s;">
+                    <form class="space-y-6">
+                        <div>
+                            <input type="text" placeholder="Your Name" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition-all duration-300">
+                        </div>
+                        <div>
+                            <input type="email" placeholder="Your Email" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition-all duration-300">
+                        </div>
+                        <div>
+                            <textarea rows="5" placeholder="Your Message" class="w-full px-4 py-3 rounded-lg border border-gray-300 focus:border-red-500 focus:ring-2 focus:ring-red-200 outline-none transition-all duration-300 resize-none"></textarea>
+                        </div>
+                        <button type="submit" class="btn-modern w-full bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
+                            Send Message
+                        </button>
+                    </form>
                 </div>
             </div>
         </div>
     </section>
 
     <!-- Footer -->
-    <footer class="bg-gray-800 text-white py-8">
-        <div class="container mx-auto px-6 text-center">
-             <div class="flex justify-center space-x-6 mb-6">
-                <a href="#" class="nav-link text-gray-300">Home</a>
-                <a href="#tshirts" class="nav-link text-gray-300">Shop</a>
-                <a href="#about" class="nav-link text-gray-300">About</a>
-                <a href="#contact" class="nav-link text-gray-300">Contact</a>
+    <footer class="bg-gray-900 text-white py-16">
+        <div class="container mx-auto px-6">
+            <div class="grid md:grid-cols-4 gap-8 mb-8">
+                <div>
+                    <h3 class="font-playfair text-2xl font-bold mb-4">DOMINE</h3>
+                    <p class="text-gray-400 mb-4">Unique fashion inspired clothing that blends art and style.</p>
+                    <div class="flex space-x-4">
+                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                            <i class="fab fa-facebook-f"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                            <i class="fab fa-instagram"></i>
+                        </a>
+                        <a href="#" class="w-10 h-10 bg-red-500 rounded-full flex items-center justify-center hover:bg-red-600 transition-colors">
+                            <i class="fab fa-twitter"></i>
+                        </a>
+                    </div>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Quick Links</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#home" class="hover:text-white transition-colors">Home</a></li>
+                        <li><a href="#collection" class="hover:text-white transition-colors">Collection</a></li>
+                        <li><a href="#about" class="hover:text-white transition-colors">About</a></li>
+                        <li><a href="#contact" class="hover:text-white transition-colors">Contact</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Categories</h4>
+                    <ul class="space-y-2 text-gray-400">
+                        <li><a href="#" class="hover:text-white transition-colors">Graphic Tees</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Minimal Design</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Artistic Prints</a></li>
+                        <li><a href="#" class="hover:text-white transition-colors">Limited Edition</a></li>
+                    </ul>
+                </div>
+                <div>
+                    <h4 class="font-semibold mb-4">Newsletter</h4>
+                    <p class="text-gray-400 mb-4">Subscribe for updates and exclusive offers</p>
+                    <div class="flex">
+                        <input type="email" placeholder="Your email" class="flex-1 px-4 py-2 rounded-l-lg bg-gray-800 border border-gray-700 focus:border-red-500 outline-none">
+                        <button class="bg-red-500 hover:bg-red-600 px-4 py-2 rounded-r-lg transition-colors">
+                            <i class="fas fa-paper-plane"></i>
+                        </button>
+                    </div>
+                </div>
             </div>
-            <div class="flex justify-center space-x-6 mt-4">
-                <a href="#" class="hover:text-[var(--primary-color)] transition-transform duration-300 hover:-translate-y-1"><i class="fab fa-facebook-f text-xl"></i></a>
-                <a href="#" class="hover:text-[var(--primary-color)] transition-transform duration-300 hover:-translate-y-1"><i class="fab fa-twitter text-xl"></i></a>
-                <a href="#" class="hover:text-[var(--primary-color)] transition-transform duration-300 hover:-translate-y-1"><i class="fab fa-instagram text-xl"></i></a>
+            <div class="border-t border-gray-800 pt-8 text-center text-gray-400">
+                <p>&copy; 2025 DOMINE. All rights reserved.</p>
             </div>
-            <p class="mt-6 text-gray-400">&copy; 2025 DOMINE. All Rights Reserved.</p>
         </div>
     </footer>
 
     <!-- Shopping Cart Sidebar -->
-    <div id="cart-sidebar" class="cart-sidebar fixed top-0 right-0 h-full w-full md:w-1/3 lg:w-1/4 bg-white shadow-2xl p-6 transform translate-x-full z-50">
-        <div class="flex justify-between items-center border-b pb-4">
-            <h3 class="text-2xl font-bold">Your Cart</h3>
-            <button id="close-cart" class="text-gray-600 hover:text-red-500 text-2xl">&times;</button>
-        </div>
-        <div id="cart-items" class="mt-6 space-y-4 overflow-y-auto h-[calc(100%-200px)]">
-            <p id="empty-cart-message" class="text-gray-500">Your cart is empty.</p>
-        </div>
-        <div class="absolute bottom-0 left-0 w-full p-6 bg-white border-t">
-            <div class="flex justify-between items-center mb-4">
-                <span class="text-lg font-semibold">Total:</span>
-                <span id="cart-total" class="text-lg font-bold text-[var(--primary-color)]">₹0.00</span>
+    <div id="cart-sidebar" class="cart-sidebar fixed top-0 right-0 h-full w-full max-w-md bg-white shadow-2xl z-50">
+        <div class="flex flex-col h-full">
+            <div class="flex justify-between items-center p-6 border-b">
+                <h3 class="text-2xl font-bold">Shopping Cart</h3>
+                <button id="cart-close" class="p-2 text-gray-600 hover:text-red-500 transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
             </div>
-            <button id="checkout-button" class="w-full btn-primary text-white py-3 rounded-lg font-semibold disabled:bg-gray-400">Proceed to Checkout</button>
+            <div id="cart-items" class="flex-1 overflow-y-auto p-6">
+                <div id="empty-cart" class="text-center text-gray-500 mt-20">
+                    <i class="fas fa-shopping-bag text-6xl mb-4 text-gray-300"></i>
+                    <p class="text-lg">Your cart is empty</p>
+                    <p class="text-sm">Add some products to get started</p>
+                </div>
+            </div>
+            <div class="border-t p-6">
+                <div class="flex justify-between items-center mb-4">
+                    <span class="text-lg font-semibold">Total:</span>
+                    <span id="cart-total" class="text-2xl font-bold text-red-500">₹0.00</span>
+                </div>
+                <button id="checkout-btn" class="w-full btn-modern bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white py-3 rounded-lg font-semibold shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300 disabled:opacity-50 disabled:cursor-not-allowed" disabled>
+                    Proceed to Checkout
+                </button>
+            </div>
         </div>
     </div>
 
     <!-- Checkout Modal -->
-    <div id="checkout-modal" class="checkout-modal fixed inset-0 bg-black bg-opacity-50 flex items-center justify-center hidden z-50">
-        <div class="bg-white rounded-lg shadow-xl p-8 w-full max-w-md transform -translate-y-full">
-            <div class="flex justify-between items-center border-b pb-4">
-                <h3 class="text-2xl font-bold">Payment</h3>
-                <button id="close-modal" class="text-gray-600 hover:text-red-500 text-2xl">&times;</button>
+    <div id="checkout-modal" class="fixed inset-0 bg-black/50 backdrop-blur-sm flex items-center justify-center z-50 hidden">
+        <div class="bg-white rounded-2xl shadow-2xl p-8 w-full max-w-md mx-4 transform scale-95 transition-transform duration-300">
+            <div class="flex justify-between items-center mb-6">
+                <h3 class="text-2xl font-bold">Payment Options</h3>
+                <button id="checkout-close" class="p-2 text-gray-600 hover:text-red-500 transition-colors">
+                    <i class="fas fa-times text-xl"></i>
+                </button>
             </div>
-            <div class="mt-6">
-                <p class="text-center text-lg mb-4">Choose your payment method</p>
-                <div class="space-y-4">
-                    <div class="border p-4 rounded-lg text-center"><h4 class="font-semibold mb-2">Scan QR Code for UPI</h4><img src="https://placehold.co/200x200/e2e8f0/333?text=SCAN+ME" alt="QR Code" class="mx-auto rounded-md"><p class="text-sm text-gray-500 mt-2">Use any UPI app</p></div>
-                    <div class="border p-4 rounded-lg text-center"><h4 class="font-semibold mb-2">Pay via UPI ID</h4><p class="bg-gray-100 p-2 rounded-md font-mono">dsdcelknd@okhdfcbank</p><button class="text-sm text-[var(--primary-color)] mt-2" onclick="copyUPI()">Copy UPI ID</button></div>
-                    <div class="border p-4 rounded-lg text-center"><h4 class="font-semibold mb-2">Pay with Payment Gateway</h4><button id="razorpay-button" class="w-full btn-primary bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-semibold">Pay with Razorpay</button></div>
+            <div class="space-y-4">
+                <div class="border-2 border-gray-200 rounded-lg p-4 hover:border-red-500 transition-colors cursor-pointer">
+                    <h4 class="font-semibold mb-2">UPI Payment</h4>
+                    <div class="text-center">
+                        <img src="https://placehold.co/200x200/e2e8f0/333?text=QR+CODE" alt="QR Code" class="mx-auto rounded-lg mb-2">
+                        <p class="text-sm text-gray-600">Scan with any UPI app</p>
+                    </div>
                 </div>
+                <div class="border-2 border-gray-200 rounded-lg p-4 hover:border-red-500 transition-colors">
+                    <h4 class="font-semibold mb-2">UPI ID</h4>
+                    <div class="bg-gray-100 p-3 rounded-lg font-mono text-center">
+                        dsdcelknd@okhdfcbank
+                    </div>
+                    <button onclick="copyUPI()" class="w-full mt-2 text-red-500 hover:text-red-600 font-medium">
+                        Copy UPI ID
+                    </button>
+                </div>
+                <button id="razorpay-btn" class="w-full btn-modern bg-blue-500 hover:bg-blue-600 text-white py-3 rounded-lg font-semibold transition-all duration-300">
+                    Pay with Razorpay
+                </button>
             </div>
         </div>
     </div>
-    
+
     <!-- Toast Notification -->
-    <div id="toast" class="fixed bottom-5 right-5 bg-green-500 text-white py-2 px-4 rounded-lg shadow-lg hidden"></div>
-    
+    <div id="toast" class="fixed bottom-6 right-6 bg-green-500 text-white px-6 py-3 rounded-lg shadow-lg transform translate-x-full transition-transform duration-300 z-50">
+        <div class="flex items-center space-x-2">
+            <i class="fas fa-check-circle"></i>
+            <span id="toast-message">Success!</span>
+        </div>
+    </div>
+
     <!-- Scroll to Top Button -->
-    <button id="scroll-top" class="scroll-top rounded-full flex items-center justify-center text-white text-xl shadow-lg">
+    <button id="scroll-top" class="fixed bottom-6 left-6 w-12 h-12 bg-red-500 hover:bg-red-600 text-white rounded-full shadow-lg opacity-0 invisible transition-all duration-300 z-40">
         <i class="fas fa-arrow-up"></i>
     </button>
 
+    <!-- Loading Overlay -->
+    <div id="loading" class="fixed inset-0 bg-white flex items-center justify-center z-50">
+        <div class="text-center">
+            <div class="loading-spinner mx-auto mb-4"></div>
+            <p class="text-gray-600">Loading DOMINE...</p>
+        </div>
+    </div>
+
     <script>
-        document.addEventListener('DOMContentLoaded', () => {
-            // --- Element Selectors ---
-            const productGrid = document.getElementById('product-grid');
-            const cartButton = document.getElementById('cart-button');
-            const closeCartButton = document.getElementById('close-cart');
-            const cartSidebar = document.getElementById('cart-sidebar');
-            const cartItemsContainer = document.getElementById('cart-items');
-            const cartCount = document.getElementById('cart-count');
-            const cartTotal = document.getElementById('cart-total');
-            const emptyCartMessage = document.getElementById('empty-cart-message');
-            const checkoutButton = document.getElementById('checkout-button');
-            const checkoutModal = document.getElementById('checkout-modal');
-            const closeModalButton = document.getElementById('close-modal');
-            const razorpayButton = document.getElementById('razorpay-button');
-            const scrollTopBtn = document.getElementById('scroll-top');
+        // Global variables
+        let cart = [];
+        let products = [];
+        let currentFilter = 'all';
+        let productsLoaded = 12;
 
-            let cart = [];
+        // Initialize the website
+        document.addEventListener('DOMContentLoaded', function() {
+            initializeWebsite();
+        });
 
-        const tshirts = [...Array.from({ length: 52 }, (_, i) => ({
-    id: i + 1,
-    name: `DOMINE Graphic Tee ${i + 1}`,
-    price: 999 + Math.floor(Math.random() * 500),
-    image: `image${i + 1}.png` // Local image path
-}))];
+        function initializeWebsite() {
+            generateProducts();
+            setupEventListeners();
+            setupScrollAnimations();
+            renderProducts();
+            updateCartUI();
+            
+            // Hide loading screen
+            setTimeout(() => {
+                document.getElementById('loading').style.display = 'none';
+            }, 1000);
+        }
 
+        // Generate sample products
+        function generateProducts() {
+            const categories = ['graphic', 'minimal', 'artistic'];
+            const designs = [
+                'Abstract Art', 'Geometric Pattern', 'Nature Inspired', 'Urban Style',
+                'Vintage Design', 'Modern Art', 'Typography', 'Illustration',
+                'Minimalist', 'Bold Graphics', 'Artistic Print', 'Creative Design'
+            ];
 
-            // --- Render Products ---
-            function renderProducts() {
-                productGrid.innerHTML = tshirts.map(product => `
-                    <div class="product-card bg-white rounded-lg overflow-hidden shadow-lg fade-in">
-                        <img src="${product.image}" alt="${product.name}" class="w-full h-64 object-cover">
-                        <div class="p-4 text-center">
-                            <h3 class="font-semibold text-lg">${product.name}</h3>
-                            <p class="text-gray-600 mt-1">₹${product.price.toFixed(2)}</p>
-                            <button class="w-full mt-4 btn-primary text-white py-2 rounded-lg font-semibold" onclick="addToCart(${product.id})">
+            for (let i = 1; i <= 52; i++) {
+                products.push({
+                    id: i,
+                    name: `${designs[Math.floor(Math.random() * designs.length)]} Tee ${i}`,
+                    price: 999 + Math.floor(Math.random() * 1500),
+                    image: `image${i}.png`,
+                    category: categories[Math.floor(Math.random() * categories.length)],
+                    rating: 4 + Math.random(),
+                    reviews: Math.floor(Math.random() * 100) + 10
+                });
+            }
+        }
+
+        // Setup event listeners
+        function setupEventListeners() {
+            // Mobile menu
+            document.getElementById('mobile-menu-toggle').addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.add('active');
+            });
+
+            document.getElementById('mobile-menu-close').addEventListener('click', () => {
+                document.getElementById('mobile-menu').classList.remove('active');
+            });
+
+            // Cart functionality
+            document.getElementById('cart-toggle').addEventListener('click', () => {
+                document.getElementById('cart-sidebar').classList.add('active');
+            });
+
+            document.getElementById('cart-close').addEventListener('click', () => {
+                document.getElementById('cart-sidebar').classList.remove('active');
+            });
+
+            // Checkout modal
+            document.getElementById('checkout-btn').addEventListener('click', () => {
+                if (cart.length > 0) {
+                    document.getElementById('checkout-modal').classList.remove('hidden');
+                    setTimeout(() => {
+                        document.querySelector('#checkout-modal > div').style.transform = 'scale(1)';
+                    }, 10);
+                }
+            });
+
+            document.getElementById('checkout-close').addEventListener('click', closeCheckoutModal);
+
+            document.getElementById('razorpay-btn').addEventListener('click', () => {
+                showToast('Redirecting to Razorpay...', 'info');
+                setTimeout(() => {
+                    showToast('Payment simulation completed!', 'success');
+                    cart = [];
+                    updateCartUI();
+                    closeCheckoutModal();
+                }, 2000);
+            });
+
+            // Filter buttons
+            document.querySelectorAll('.filter-btn').forEach(btn => {
+                btn.addEventListener('click', (e) => {
+                    document.querySelectorAll('.filter-btn').forEach(b => {
+                        b.classList.remove('active', 'bg-red-500', 'text-white');
+                        b.classList.add('bg-white', 'text-gray-700');
+                    });
+                    
+                    e.target.classList.add('active', 'bg-red-500', 'text-white');
+                    e.target.classList.remove('bg-white', 'text-gray-700');
+                    
+                    currentFilter = e.target.dataset.filter;
+                    productsLoaded = 12;
+                    renderProducts();
+                });
+            });
+
+            // Load more button
+            document.getElementById('load-more').addEventListener('click', () => {
+                productsLoaded += 12;
+                renderProducts();
+            });
+
+            // Scroll to top
+            document.getElementById('scroll-top').addEventListener('click', () => {
+                window.scrollTo({ top: 0, behavior: 'smooth' });
+            });
+
+            // Smooth scrolling for navigation links
+            document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+                anchor.addEventListener('click', function (e) {
+                    e.preventDefault();
+                    const target = document.querySelector(this.getAttribute('href'));
+                    if (target) {
+                        target.scrollIntoView({ behavior: 'smooth', block: 'start' });
+                    }
+                    
+                    // Close mobile menu if open
+                    document.getElementById('mobile-menu').classList.remove('active');
+                });
+            });
+
+            // Window scroll events
+            window.addEventListener('scroll', () => {
+                const scrollTop = document.getElementById('scroll-top');
+                if (window.scrollY > 300) {
+                    scrollTop.style.opacity = '1';
+                    scrollTop.style.visibility = 'visible';
+                } else {
+                    scrollTop.style.opacity = '0';
+                    scrollTop.style.visibility = 'hidden';
+                }
+            });
+        }
+
+        // Setup scroll animations
+        function setupScrollAnimations() {
+            const observer = new IntersectionObserver((entries) => {
+                entries.forEach(entry => {
+                    if (entry.isIntersecting) {
+                        entry.target.classList.add('animated');
+                        observer.unobserve(entry.target);
+                    }
+                });
+            }, { threshold: 0.1 });
+
+            document.querySelectorAll('.animate-on-scroll').forEach(el => {
+                observer.observe(el);
+            });
+        }
+
+        // Render products
+        function renderProducts() {
+            const grid = document.getElementById('products-grid');
+            const filteredProducts = currentFilter === 'all' 
+                ? products 
+                : products.filter(p => p.category === currentFilter);
+            
+            const productsToShow = filteredProducts.slice(0, productsLoaded);
+            
+            grid.innerHTML = productsToShow.map(product => `
+                <div class="product-card bg-white rounded-2xl overflow-hidden shadow-lg hover:shadow-2xl transition-all duration-300 animate-on-scroll">
+                    <div class="relative overflow-hidden">
+                        <img src="${product.image}" alt="${product.name}" class="product-image w-full h-64 object-cover">
+                        <div class="absolute top-4 right-4">
+                            <span class="bg-red-500 text-white px-2 py-1 rounded-full text-xs font-medium">
+                                ${product.category.charAt(0).toUpperCase() + product.category.slice(1)}
+                            </span>
+                        </div>
+                    </div>
+                    <div class="p-6">
+                        <h3 class="font-semibold text-lg mb-2 text-gray-900">${product.name}</h3>
+                        <div class="flex items-center mb-3">
+                            <div class="flex text-yellow-400 text-sm">
+                                ${'★'.repeat(Math.floor(product.rating))}${'☆'.repeat(5 - Math.floor(product.rating))}
+                            </div>
+                            <span class="text-gray-500 text-sm ml-2">(${product.reviews})</span>
+                        </div>
+                        <div class="flex items-center justify-between">
+                            <span class="text-2xl font-bold text-red-500">₹${product.price}</span>
+                            <button onclick="addToCart(${product.id})" class="btn-modern bg-gradient-to-r from-red-500 to-red-600 hover:from-red-600 hover:to-red-700 text-white px-6 py-2 rounded-full font-medium shadow-lg hover:shadow-xl transform hover:scale-105 transition-all duration-300">
                                 Add to Cart
                             </button>
                         </div>
                     </div>
-                `).join('');
-                observeAnimatedElements(); // Re-observe after rendering
+                </div>
+            `).join('');
+
+            // Hide load more button if all products are shown
+            const loadMoreBtn = document.getElementById('load-more');
+            if (productsLoaded >= filteredProducts.length) {
+                loadMoreBtn.style.display = 'none';
+            } else {
+                loadMoreBtn.style.display = 'block';
             }
 
-            // --- Cart Functionality ---
-            window.addToCart = (productId) => {
-                const product = tshirts.find(p => p.id === productId);
-                const existingItem = cart.find(item => item.id === productId);
-                if (existingItem) {
-                    existingItem.quantity++;
-                } else {
-                    cart.push({ ...product, quantity: 1 });
-                }
-                updateCart();
-                showToast(`${product.name} added to cart!`);
-            };
-            window.removeFromCart = (productId) => {
-                cart = cart.filter(item => item.id !== productId);
-                updateCart();
-            };
-            function updateCart() {
-                renderCartItems();
-                updateCartTotal();
-                updateCartCount();
-                checkoutButton.disabled = cart.length === 0;
-            }
-            function renderCartItems() {
-                if (cart.length === 0) {
-                    cartItemsContainer.innerHTML = '';
-                    emptyCartMessage.classList.remove('hidden');
-                    return;
-                }
-                emptyCartMessage.classList.add('hidden');
-                cartItemsContainer.innerHTML = cart.map(item => `
-                    <div class="flex justify-between items-center cart-item-enter">
-                        <div class="flex items-center space-x-3"><img src="${item.image}" alt="${item.name}" class="w-16 h-16 rounded-md object-cover"><div><p class="font-semibold">${item.name}</p><p class="text-sm text-gray-500">₹${item.price.toFixed(2)}</p></div></div>
-                        <div class="flex items-center space-x-3"><span class="font-semibold">x ${item.quantity}</span><button class="text-red-500 hover:text-red-700" onclick="removeFromCart(${item.id})"><i class="fas fa-trash"></i></button></div>
-                    </div>`).join('');
-            }
-            function updateCartTotal() {
-                const total = cart.reduce((sum, item) => sum + item.price * item.quantity, 0);
-                cartTotal.textContent = `₹${total.toFixed(2)}`;
-            }
-            function updateCartCount() {
-                const count = cart.reduce((sum, item) => sum + item.quantity, 0);
-                cartCount.textContent = count;
-            }
-
-            // --- UI Interactions & Event Listeners ---
-            cartButton.addEventListener('click', () => cartSidebar.classList.remove('translate-x-full'));
-            closeCartButton.addEventListener('click', () => cartSidebar.classList.add('translate-x-full'));
-            checkoutButton.addEventListener('click', () => {
-                if(cart.length > 0) {
-                    checkoutModal.classList.remove('hidden');
-                    setTimeout(() => checkoutModal.querySelector('div').classList.remove('-translate-y-full'), 10);
-                }
-            });
-            closeModalButton.addEventListener('click', () => {
-                checkoutModal.querySelector('div').classList.add('-translate-y-full');
-                setTimeout(() => checkoutModal.classList.add('hidden'), 300);
-            });
-            razorpayButton.addEventListener('click', () => alert('Redirecting to Razorpay... (This is a simulation)'));
-            scrollTopBtn.addEventListener('click', () => window.scrollTo({ top: 0, behavior: 'smooth' }));
-
-            // --- Scroll Animations ---
-            function observeAnimatedElements() {
-                const animatedElements = document.querySelectorAll('.fade-in');
-                const observer = new IntersectionObserver((entries) => {
-                    entries.forEach(entry => {
-                        if (entry.isIntersecting) {
-                            entry.target.classList.add('visible');
-                            observer.unobserve(entry.target);
-                        }
-                    });
-                }, { threshold: 0.1 });
-                animatedElements.forEach(el => observer.observe(el));
-            }
-
-            window.addEventListener('scroll', () => {
-                if (window.scrollY > 300) {
-                    scrollTopBtn.classList.add('active');
-                } else {
-                    scrollTopBtn.classList.remove('active');
-                }
-            });
-
-            // --- Initial Load ---
-            renderProducts();
-            updateCart();
-        });
-        
-        // --- Utility Functions ---
-        function copyUPI() {
-            const upiId = 'dsdcelknd@okhdfcbank';
-            const textArea = document.createElement("textarea");
-            textArea.value = upiId;
-            document.body.appendChild(textArea);
-            textArea.select();
-            try {
-                document.execCommand('copy');
-                showToast('UPI ID Copied!');
-            } catch (err) {
-                showToast('Failed to copy!', true);
-            }
-            document.body.removeChild(textArea);
+            // Re-setup scroll animations for new products
+            setupScrollAnimations();
         }
 
-        function showToast(message, isError = false) {
+        // Cart functions
+        function addToCart(productId) {
+            const product = products.find(p => p.id === productId);
+            const existingItem = cart.find(item => item.id === productId);
+
+            if (existingItem) {
+                existingItem.quantity++;
+            } else {
+                cart.push({ ...product, quantity: 1 });
+            }
+
+            updateCartUI();
+            showToast(`${product.name} added to cart!`, 'success');
+        }
+
+        function removeFromCart(productId) {
+            cart = cart.filter(item => item.id !== productId);
+            updateCartUI();
+            showToast('Item removed from cart', 'info');
+        }
+
+        function updateQuantity(productId, change) {
+            const item = cart.find(item => item.id === productId);
+            if (item) {
+                item.quantity += change;
+                if (item.quantity <= 0) {
+                    removeFromCart(productId);
+                } else {
+                    updateCartUI();
+                }
+            }
+        }
+
+        function updateCartUI() {
+            const cartCount = document.getElementById('cart-count');
+            const cartItems = document.getElementById('cart-items');
+            const cartTotal = document.getElementById('cart-total');
+            const emptyCart = document.getElementById('empty-cart');
+            const checkoutBtn = document.getElementById('checkout-btn');
+
+            // Update cart count
+            const totalItems = cart.reduce((sum, item) => sum + item.quantity, 0);
+            cartCount.textContent = totalItems;
+
+            // Update cart items
+            if (cart.length === 0) {
+                emptyCart.style.display = 'block';
+                checkoutBtn.disabled = true;
+            } else {
+                emptyCart.style.display = 'none';
+                checkoutBtn.disabled = false;
+                
+                cartItems.innerHTML = `
+                    <div class="space-y-4">
+                        ${cart.map(item => `
+                            <div class="flex items-center space-x-4 p-4 bg-gray-50 rounded-lg">
+                                <img src="${item.image}" alt="${item.name}" class="w-16 h-16 object-cover rounded-lg">
+                                <div class="flex-1">
+                                    <h4 class="font-medium text-gray-900">${item.name}</h4>
+                                    <p class="text-red-500 font-semibold">₹${item.price}</p>
+                                </div>
+                                <div class="flex items-center space-x-2">
+                                    <button onclick="updateQuantity(${item.id}, -1)" class="w-8 h-8 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center transition-colors">
+                                        <i class="fas fa-minus text-xs"></i>
+                                    </button>
+                                    <span class="w-8 text-center font-medium">${item.quantity}</span>
+                                    <button onclick="updateQuantity(${item.id}, 1)" class="w-8 h-8 bg-gray-200 hover:bg-gray-300 rounded-full flex items-center justify-center transition-colors">
+                                        <i class="fas fa-plus text-xs"></i>
+                                    </button>
+                                </div>
+                                <button onclick="removeFromCart(${item.id})" class="text-red-500 hover:text-red-700 transition-colors">
+                                    <i class="fas fa-trash"></i>
+                                </button>
+                            </div>
+                        `).join('')}
+                    </div>
+                `;
+            }
+
+            // Update total
+            const total = cart.reduce((sum, item) => sum + (item.price * item.quantity), 0);
+            cartTotal.textContent = `₹${total.toFixed(2)}`;
+        }
+
+        // Utility functions
+        function closeCheckoutModal() {
+            document.querySelector('#checkout-modal > div').style.transform = 'scale(0.95)';
+            setTimeout(() => {
+                document.getElementById('checkout-modal').classList.add('hidden');
+            }, 300);
+        }
+
+        function copyUPI() {
+            const upiId = 'dsdcelknd@okhdfcbank';
+            navigator.clipboard.writeText(upiId).then(() => {
+                showToast('UPI ID copied to clipboard!', 'success');
+            }).catch(() => {
+                showToast('Failed to copy UPI ID', 'error');
+            });
+        }
+
+        function showToast(message, type = 'success') {
             const toast = document.getElementById('toast');
-            toast.textContent = message;
-            toast.className = `fixed bottom-5 right-5 text-white py-2 px-4 rounded-lg shadow-lg ${isError ? 'bg-red-500' : 'bg-green-500'}`;
-            toast.classList.remove('hidden');
-            setTimeout(() => toast.classList.add('hidden'), 3000);
+            const toastMessage = document.getElementById('toast-message');
+            
+            toastMessage.textContent = message;
+            
+            // Set color based on type
+            toast.className = `fixed bottom-6 right-6 px-6 py-3 rounded-lg shadow-lg transform transition-transform duration-300 z-50 ${
+                type === 'success' ? 'bg-green-500' : 
+                type === 'error' ? 'bg-red-500' : 
+                type === 'info' ? 'bg-blue-500' : 'bg-gray-500'
+            } text-white`;
+            
+            // Show toast
+            toast.style.transform = 'translateX(0)';
+            
+            // Hide after 3 seconds
+            setTimeout(() => {
+                toast.style.transform = 'translateX(100%)';
+            }, 3000);
         }
     </script>
 </body>
